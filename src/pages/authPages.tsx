@@ -53,13 +53,19 @@ export function ResetPasswordPage() { const [error, setError] = useState<string 
 
 export function AuthCallbackPage() {
   const navigate = useNavigate()
+  const location = useLocation()
   const [error, setError] = useState<string | null>(null)
   useEffect(() => {
-    void supabase.auth.exchangeCodeForSession(window.location.href).then(({ error: exchangeError }) => {
+    const code = new URLSearchParams(location.search).get('code')
+    if (!code) {
+      setError('This verification link is incomplete or has expired. Request a new verification email.')
+      return
+    }
+    void supabase.auth.exchangeCodeForSession(code).then(({ error: exchangeError }) => {
       if (exchangeError) setError(exchangeError.message)
       else navigate(APP_ROUTES.home, { replace: true })
     })
-  }, [navigate])
+  }, [location.search, navigate])
   return error ? <AuthLayout><h1 className="mt-6 text-2xl font-semibold">Link could not be verified</h1><AuthError message={error} /></AuthLayout> : <PageStatus message="Verifying your email…" />
 }
 
