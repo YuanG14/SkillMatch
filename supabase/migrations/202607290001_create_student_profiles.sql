@@ -9,7 +9,7 @@ create table public.student_profiles (
   -- Personal info
   phone text,
   headline text,
-
+  
   -- Location
   location_city text,
   location_country text,
