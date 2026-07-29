@@ -141,12 +141,20 @@ export function LandingPage() {
         </div>
       </section>
 
-      {/* How it works */}
+      {/* How it works (teaser -- full walkthrough lives on the dedicated page) */}
       <section id="how-it-works" className="py-20">
         <div className="mx-auto max-w-7xl px-6">
-          <h2 className="font-display text-2xl font-semibold text-ink-950 sm:text-3xl">
-            How it works
-          </h2>
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <h2 className="font-display text-2xl font-semibold text-ink-950 sm:text-3xl">
+              How it works
+            </h2>
+            <Link
+              to={APP_ROUTES.howItWorks}
+              className="text-sm font-medium text-primary-600 hover:text-primary-700"
+            >
+              See How It Works &rarr;
+            </Link>
+          </div>
           <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((step) => (
               <div key={step.number}>
