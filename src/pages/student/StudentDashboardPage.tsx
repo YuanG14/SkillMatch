@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import {
   Card,
   CardHeader,
@@ -8,18 +9,54 @@ import {
 import { EmptyState } from '@/components/ui/EmptyState'
 import { Button } from '@/components/ui/Button'
 import { MatchRing } from '@/components/ui/MatchRing'
+import { Spinner } from '@/components/ui/Spinner'
+import { useStudentProfile } from '@/features/studentProfile/useStudentProfile'
+import { calculateProfileCompletion } from '@/utils/profileCompletion'
 
 export function StudentDashboardPage() {
+  const { profile, isLoading } = useStudentProfile()
+  const completion = calculateProfileCompletion(profile)
+
   return (
     <div className="flex flex-col gap-6">
       <div>
         <h1 className="font-display text-2xl font-semibold text-ink-950">Dashboard</h1>
         <p className="text-sm text-ink-600">
-          This is a shell for Sprint 1 to fill in with real data.
+          Here's where things stand with your SkillMatch profile.
         </p>
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <Card>
+          <CardHeader>
+            <CardTitle>Profile completion</CardTitle>
+            <CardDescription>
+              {completion.percent === 100
+                ? 'Your profile is complete.'
+                : 'A complete profile improves your matches.'}
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="flex flex-col items-center gap-4">
+            {isLoading ? (
+              <Spinner label="Loading…" />
+            ) : (
+              <>
+                <MatchRing value={completion.percent} />
+                <Link to="/student/profile">
+                  <Button
+                    size="sm"
+                    variant={completion.percent === 100 ? 'outline' : 'primary'}
+                  >
+                    {completion.percent === 100
+                      ? 'Edit profile'
+                      : 'Complete your profile'}
+                  </Button>
+                </Link>
+              </>
+            )}
+          </CardContent>
+        </Card>
+
         <Card>
           <CardHeader>
             <CardTitle>Top match</CardTitle>
@@ -32,7 +69,7 @@ export function StudentDashboardPage() {
           </CardContent>
         </Card>
 
-        <Card className="sm:col-span-2 lg:col-span-2">
+        <Card className="sm:col-span-2 lg:col-span-1">
           <CardHeader>
             <CardTitle>Recent applications</CardTitle>
             <CardDescription>Track applications as you submit them.</CardDescription>

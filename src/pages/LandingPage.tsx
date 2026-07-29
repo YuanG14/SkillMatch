@@ -1,4 +1,7 @@
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
+import { APP_ROUTES, ROLE_DASHBOARD_ROUTES } from '@/constants/routes'
+import { useAuth } from '@/features/auth/useAuth'
+import { PageStatus } from '@/features/auth/ProtectedRoute'
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent } from '@/components/ui/Card'
 import { Badge } from '@/components/ui/Badge'
@@ -50,6 +53,13 @@ const steps = [
 ]
 
 export function LandingPage() {
+  const { isLoading, user, profile } = useAuth()
+
+  if (isLoading) return <PageStatus message="Loading…" />
+  if (user && !user.email_confirmed_at)
+    return <Navigate to={APP_ROUTES.verifyEmail} replace />
+  if (profile) return <Navigate to={ROLE_DASHBOARD_ROUTES[profile.role]} replace />
+
   return (
     <>
       {/* Hero */}
@@ -64,10 +74,10 @@ export function LandingPage() {
               skills, experience, goals, and career preferences.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/signup">
+              <Link to={APP_ROUTES.register}>
                 <Button size="lg">Find Your Match</Button>
               </Link>
-              <Link to="/signup?as=company">
+              <Link to={`${APP_ROUTES.register}?as=company`}>
                 <Button size="lg" variant="outline">
                   I&apos;m a Company
                 </Button>

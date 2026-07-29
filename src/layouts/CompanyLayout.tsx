@@ -10,12 +10,5 @@ const companyNavItems: NavItem[] = [
 ]
 
 export function CompanyLayout() {
-  return (
-    <DashboardLayout
-      navItems={companyNavItems}
-      roleLabel="Company account"
-      userName="Company"
-      userInitial="C"
-    />
-  )
+  return <DashboardLayout navItems={companyNavItems} roleLabel="Company account" />
 }

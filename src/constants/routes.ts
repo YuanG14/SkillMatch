@@ -8,9 +8,9 @@ export const APP_ROUTES = {
   resetPassword: '/reset-password',
   authCallback: '/auth/callback',
   verifyEmail: '/verify-email',
-  studentDashboard: '/student/dashboard',
-  companyDashboard: '/company/dashboard',
-  adminDashboard: '/admin/dashboard',
+  studentDashboard: '/student',
+  companyDashboard: '/company',
+  adminDashboard: '/admin',
 } as const
 
 export const ROLE_DASHBOARD_ROUTES: Record<UserRole, string> = {
