@@ -2,13 +2,17 @@ import { Card, CardContent } from '@/components/ui/Card'
 import { CheckIcon, AlertTriangleIcon } from '@/components/ui/icons'
 import { SectionHeading } from '@/components/how-it-works/SectionHeading'
 import { Reveal } from '@/components/how-it-works/Reveal'
+import { NextSectionLink } from '@/components/how-it-works/NextSectionLink'
 
 const haveSkills = ['React', 'TypeScript', 'Git']
 const improveSkills = ['Next.js', 'REST APIs']
 
 export function SkillGapSection() {
   return (
-    <section className="border-t border-border bg-surface-muted py-20">
+    <section
+      id="skill-gaps"
+      className="scroll-mt-[140px] border-t border-border bg-surface-muted py-20"
+    >
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <Reveal>
@@ -70,6 +74,8 @@ export function SkillGapSection() {
             </Card>
           </Reveal>
         </div>
+
+        <NextSectionLink targetId="recommendations" label="Recommendations" />
       </div>
     </section>
   )

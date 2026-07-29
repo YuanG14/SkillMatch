@@ -2,6 +2,7 @@ import { Card, CardContent } from '@/components/ui/Card'
 import { CheckIcon, UserIcon, BuildingIcon } from '@/components/ui/icons'
 import { SectionHeading } from '@/components/how-it-works/SectionHeading'
 import { Reveal } from '@/components/how-it-works/Reveal'
+import { NextSectionLink } from '@/components/how-it-works/NextSectionLink'
 
 const studentPoints = [
   'Build your profile',
@@ -21,7 +22,10 @@ const companyPoints = [
 
 export function AudienceSection() {
   return (
-    <section className="border-t border-border bg-surface-muted py-20">
+    <section
+      id="students-companies"
+      className="scroll-mt-[140px] border-t border-border bg-surface-muted py-20"
+    >
       <div className="mx-auto max-w-7xl px-6">
         <Reveal>
           <SectionHeading
@@ -85,6 +89,8 @@ export function AudienceSection() {
             </Card>
           </Reveal>
         </div>
+
+        <NextSectionLink targetId="why-skillmatch" label="Why SkillMatch" />
       </div>
     </section>
   )

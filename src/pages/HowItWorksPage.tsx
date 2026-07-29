@@ -1,4 +1,5 @@
 import { HowItWorksHero } from '@/components/how-it-works/HowItWorksHero'
+import { HowItWorksSectionNav } from '@/components/how-it-works/HowItWorksSectionNav'
 import { JourneySection } from '@/components/how-it-works/JourneySection'
 import { MatchingEngineSection } from '@/components/how-it-works/MatchingEngineSection'
 import { MatchScoreSection } from '@/components/how-it-works/MatchScoreSection'
@@ -12,6 +13,7 @@ export function HowItWorksPage() {
   return (
     <>
       <HowItWorksHero />
+      <HowItWorksSectionNav />
       <JourneySection />
       <MatchingEngineSection />
       <MatchScoreSection />

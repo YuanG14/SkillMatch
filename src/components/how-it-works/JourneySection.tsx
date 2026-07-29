@@ -6,6 +6,7 @@ import { SectionHeading } from '@/components/how-it-works/SectionHeading'
 import { JourneyStep } from '@/components/how-it-works/JourneyStep'
 import { ProfileMockup } from '@/components/how-it-works/ProfileMockup'
 import { Reveal } from '@/components/how-it-works/Reveal'
+import { NextSectionLink } from '@/components/how-it-works/NextSectionLink'
 
 function InternshipRequirementMockup() {
   const requirements = [
@@ -203,7 +204,7 @@ const steps = [
 
 export function JourneySection() {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-20">
+    <section id="your-journey" className="mx-auto max-w-7xl scroll-mt-[140px] px-6 py-20">
       <Reveal>
         <SectionHeading
           eyebrow="Your Journey"
@@ -225,6 +226,8 @@ export function JourneySection() {
           />
         ))}
       </div>
+
+      <NextSectionLink targetId="matching" label="Matching" />
     </section>
   )
 }

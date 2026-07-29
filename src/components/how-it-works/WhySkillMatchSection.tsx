@@ -21,7 +21,10 @@ const skillmatch = [
 
 export function WhySkillMatchSection() {
   return (
-    <section className="mx-auto max-w-5xl px-6 pt-20 pb-28">
+    <section
+      id="why-skillmatch"
+      className="mx-auto max-w-5xl scroll-mt-[140px] px-6 pt-20 pb-28"
+    >
       <Reveal>
         <SectionHeading
           eyebrow="Why SkillMatch"

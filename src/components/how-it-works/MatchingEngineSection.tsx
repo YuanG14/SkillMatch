@@ -3,6 +3,7 @@ import { Badge } from '@/components/ui/Badge'
 import { ArrowDownIcon } from '@/components/ui/icons'
 import { SectionHeading } from '@/components/how-it-works/SectionHeading'
 import { Reveal } from '@/components/how-it-works/Reveal'
+import { NextSectionLink } from '@/components/how-it-works/NextSectionLink'
 
 function Connector() {
   return (
@@ -14,7 +15,10 @@ function Connector() {
 
 export function MatchingEngineSection() {
   return (
-    <section className="border-t border-border bg-surface-muted py-20">
+    <section
+      id="matching"
+      className="scroll-mt-[140px] border-t border-border bg-surface-muted py-20"
+    >
       <div className="mx-auto max-w-4xl px-6">
         <Reveal>
           <SectionHeading
@@ -103,6 +107,8 @@ export function MatchingEngineSection() {
             </div>
           </Reveal>
         </div>
+
+        <NextSectionLink targetId="match-score" label="Match Score" />
       </div>
     </section>
   )

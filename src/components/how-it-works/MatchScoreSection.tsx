@@ -4,6 +4,7 @@ import { MatchRing } from '@/components/ui/MatchRing'
 import { CheckIcon, AlertTriangleIcon } from '@/components/ui/icons'
 import { SectionHeading } from '@/components/how-it-works/SectionHeading'
 import { Reveal } from '@/components/how-it-works/Reveal'
+import { NextSectionLink } from '@/components/how-it-works/NextSectionLink'
 import { useInView } from '@/hooks/useInView'
 
 const comparisonRows = [
@@ -53,7 +54,7 @@ function AnimatedMatchRing({ target }: { target: number }) {
 
 export function MatchScoreSection() {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-20">
+    <section id="match-score" className="mx-auto max-w-7xl scroll-mt-[140px] px-6 py-20">
       <Reveal>
         <SectionHeading
           eyebrow="Match Score"
@@ -113,6 +114,8 @@ export function MatchScoreSection() {
           </Card>
         </Reveal>
       </div>
+
+      <NextSectionLink targetId="skill-gaps" label="Skill Gaps" />
     </section>
   )
 }

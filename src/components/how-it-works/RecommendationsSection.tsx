@@ -3,6 +3,7 @@ import { Badge } from '@/components/ui/Badge'
 import { MatchRing } from '@/components/ui/MatchRing'
 import { SectionHeading } from '@/components/how-it-works/SectionHeading'
 import { Reveal } from '@/components/how-it-works/Reveal'
+import { NextSectionLink } from '@/components/how-it-works/NextSectionLink'
 
 const recommendations = [
   {
@@ -30,7 +31,10 @@ const recommendations = [
 
 export function RecommendationsSection() {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-20">
+    <section
+      id="recommendations"
+      className="mx-auto max-w-7xl scroll-mt-[140px] px-6 py-20"
+    >
       <Reveal>
         <SectionHeading
           eyebrow="Recommendations"
@@ -68,6 +72,8 @@ export function RecommendationsSection() {
           </Reveal>
         ))}
       </div>
+
+      <NextSectionLink targetId="students-companies" label="Students & Companies" />
     </section>
   )
 }
