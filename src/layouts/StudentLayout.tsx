@@ -17,12 +17,5 @@ const studentNavItems: NavItem[] = [
 ]
 
 export function StudentLayout() {
-  return (
-    <DashboardLayout
-      navItems={studentNavItems}
-      roleLabel="Student account"
-      userName="Student"
-      userInitial="S"
-    />
-  )
+  return <DashboardLayout navItems={studentNavItems} roleLabel="Student account" />
 }
