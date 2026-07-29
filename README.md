@@ -89,7 +89,11 @@ as documentation and must never contain real values.
    The callback paths are `/auth/callback` and `/reset-password`.
 3. Apply `supabase/migrations/202607270001_create_auth_profiles.sql` using the
    Supabase CLI or SQL editor before allowing users to register.
-4. Public registration is intentionally limited to `student` and `company`.
+4. Apply `supabase/migrations/202607290001_create_core_schema.sql` after the
+   authentication migration to create the platform's profiles, skills,
+   internships, applications, saved-items, messaging, notification, and
+   administration schema.
+5. Public registration is intentionally limited to `student` and `company`.
    Provision an admin in the Supabase dashboard/service role, then add their
    `auth.users.id` to `public.profiles` with role `admin`.
 
