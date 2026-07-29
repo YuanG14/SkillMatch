@@ -57,7 +57,7 @@ export function PublicHeader() {
                 Log In
               </Link>
               <Link to={APP_ROUTES.register}>
-                <Button size="sm">Get Started</Button>
+                <Button size="sm">Sign Up</Button>
               </Link>
             </>
           )}
