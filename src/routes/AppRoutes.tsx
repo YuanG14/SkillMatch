@@ -24,6 +24,7 @@ import { ComingSoonPage } from '@/pages/ComingSoonPage'
 import { NotFoundPage } from '@/pages/NotFoundPage'
 
 import { StudentDashboardPage } from '@/pages/student/StudentDashboardPage'
+import { StudentProfilePage } from '@/pages/student/StudentProfilePage'
 import { CompanyDashboardPage } from '@/pages/company/CompanyDashboardPage'
 import { AdminDashboardPage } from '@/pages/admin/AdminDashboardPage'
 
@@ -85,6 +86,10 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <StudentDashboardPage />,
+          },
+          {
+            path: 'profile',
+            element: <StudentProfilePage />,
           },
           {
             path: 'internships',
