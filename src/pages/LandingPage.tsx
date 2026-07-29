@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { APP_ROUTES } from '@/constants/routes'
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent } from '@/components/ui/Card'
 import { Badge } from '@/components/ui/Badge'
@@ -64,10 +65,10 @@ export function LandingPage() {
               skills, experience, goals, and career preferences.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/signup">
+              <Link to={APP_ROUTES.register}>
                 <Button size="lg">Find Your Match</Button>
               </Link>
-              <Link to="/signup?as=company">
+              <Link to={`${APP_ROUTES.register}?as=company`}>
                 <Button size="lg" variant="outline">
                   I&apos;m a Company
                 </Button>
