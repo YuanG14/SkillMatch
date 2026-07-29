@@ -6,7 +6,6 @@ import { SkillGapSection } from '@/components/how-it-works/SkillGapSection'
 import { RecommendationsSection } from '@/components/how-it-works/RecommendationsSection'
 import { AudienceSection } from '@/components/how-it-works/AudienceSection'
 import { WhySkillMatchSection } from '@/components/how-it-works/WhySkillMatchSection'
-import { FinalCTA } from '@/components/how-it-works/FinalCTA'
 
 export function HowItWorksPage() {
   return (
@@ -19,7 +18,6 @@ export function HowItWorksPage() {
       <RecommendationsSection />
       <AudienceSection />
       <WhySkillMatchSection />
-      <FinalCTA />
     </>
   )
 }

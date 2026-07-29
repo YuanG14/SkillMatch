@@ -1,7 +1,4 @@
-import { Link } from 'react-router-dom'
-import { APP_ROUTES } from '@/constants/routes'
 import { Card, CardContent } from '@/components/ui/Card'
-import { Button } from '@/components/ui/Button'
 import { CheckIcon, UserIcon, BuildingIcon } from '@/components/ui/icons'
 import { SectionHeading } from '@/components/how-it-works/SectionHeading'
 import { Reveal } from '@/components/how-it-works/Reveal'
@@ -58,11 +55,6 @@ export function AudienceSection() {
                     </li>
                   ))}
                 </ul>
-                <Link to={APP_ROUTES.register} className="mt-auto">
-                  <Button size="lg" className="w-full sm:w-auto">
-                    Get Started
-                  </Button>
-                </Link>
               </CardContent>
             </Card>
           </Reveal>
@@ -89,11 +81,6 @@ export function AudienceSection() {
                     </li>
                   ))}
                 </ul>
-                <Link to={`${APP_ROUTES.register}?as=company`} className="mt-auto">
-                  <Button size="lg" variant="outline" className="w-full sm:w-auto">
-                    For Companies
-                  </Button>
-                </Link>
               </CardContent>
             </Card>
           </Reveal>

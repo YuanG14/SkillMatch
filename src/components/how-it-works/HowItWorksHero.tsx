@@ -1,6 +1,3 @@
-import { Link } from 'react-router-dom'
-import { APP_ROUTES } from '@/constants/routes'
-import { Button } from '@/components/ui/Button'
 import { Card, CardContent } from '@/components/ui/Card'
 import { Badge } from '@/components/ui/Badge'
 import { MatchRing } from '@/components/ui/MatchRing'
@@ -15,21 +12,11 @@ export function HowItWorksHero() {
           <h1 className="font-display text-4xl font-semibold leading-tight text-ink-950 sm:text-5xl">
             How SkillMatch Works
           </h1>
-          <p className="mt-5 max-w-lg text-lg text-ink-600">
+          <p className="mt-6 max-w-lg text-lg text-ink-600">
             From your skills to your next opportunity. SkillMatch looks at your education,
             skills, projects, and experience, then matches your profile against internship
             requirements -- so you know where you fit and where you can grow.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link to={APP_ROUTES.register}>
-              <Button size="lg">Get Started</Button>
-            </Link>
-            <Link to={`${APP_ROUTES.register}?as=company`}>
-              <Button size="lg" variant="outline">
-                I&apos;m a Company
-              </Button>
-            </Link>
-          </div>
         </Reveal>
 
         {/* Interactive workflow visualization: profile -> engine -> match -> internship */}
