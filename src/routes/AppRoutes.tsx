@@ -26,6 +26,7 @@ import { NotFoundPage } from '@/pages/NotFoundPage'
 import { StudentDashboardPage } from '@/pages/student/StudentDashboardPage'
 import { StudentProfilePage } from '@/pages/student/StudentProfilePage'
 import { CompanyDashboardPage } from '@/pages/company/CompanyDashboardPage'
+import { CompanyProfilePage } from '@/pages/company/CompanyProfilePage'
 import { AdminDashboardPage } from '@/pages/admin/AdminDashboardPage'
 
 const router = createBrowserRouter([
@@ -120,6 +121,10 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <CompanyDashboardPage />,
+          },
+          {
+            path: 'profile',
+            element: <CompanyProfilePage />,
           },
           {
             path: 'listings',
