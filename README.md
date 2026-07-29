@@ -4,13 +4,15 @@ Smart Internship & Skill Matching Platform — connects students with internship
 opportunities based on their skills, education, experience, preferences, and
 career goals.
 
-> **Status:** Sprint 0 — project foundation only. No application features are
-> implemented yet. See [Future Roadmap](#future-roadmap) for what's planned.
+> **Status:** Authentication and role-based access are implemented. Remaining
+> product capabilities are listed in [Future Roadmap](#future-roadmap).
 
 ## Features
 
-Nothing yet — Sprint 0 is foundation and standards only. Planned features are
-listed under [Future Roadmap](#future-roadmap).
+- Email/password registration and sign-in for Students and Companies
+- Email confirmation, password reset, persisted Supabase sessions, and sign-out
+- Role-protected Student, Company, and Administrator routes
+- Row-level security profile schema in `supabase/migrations/`
 
 ## Tech Stack
 
@@ -79,6 +81,21 @@ Copy `.env.example` to `.env` and fill in:
 
 `.env` is gitignored and must never be committed. `.env.example` stays tracked
 as documentation and must never contain real values.
+
+## Authentication setup
+
+1. In Supabase Authentication, enable Email provider and enable email confirmations.
+2. Add your local and production URLs to **Authentication → URL Configuration**.
+   The callback paths are `/auth/callback` and `/reset-password`.
+3. Apply `supabase/migrations/202607270001_create_auth_profiles.sql` using the
+   Supabase CLI or SQL editor before allowing users to register.
+4. Apply `supabase/migrations/202607290001_create_core_schema.sql` after the
+   authentication migration to create the platform's profiles, skills,
+   internships, applications, saved-items, messaging, notification, and
+   administration schema.
+5. Public registration is intentionally limited to `student` and `company`.
+   Provision an admin in the Supabase dashboard/service role, then add their
+   `auth.users.id` to `public.profiles` with role `admin`.
 
 ## Development
 
