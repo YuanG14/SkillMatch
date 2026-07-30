@@ -10,6 +10,7 @@ import { EmptyState } from '@/components/ui/EmptyState'
 import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
 import { Spinner } from '@/components/ui/Spinner'
+import { DashboardPageHeader } from '@/components/dashboard/DashboardPageHeader'
 import { useCompanyProfile } from '@/features/companyProfile/useCompanyProfile'
 import { VERIFICATION_STATUS_DISPLAY } from '@/utils/verificationStatus'
 
@@ -20,18 +21,16 @@ export function CompanyDashboardPage() {
   const hasCompanyDetails = Boolean(profile?.companyName)
 
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="font-display text-2xl font-semibold text-ink-950">Dashboard</h1>
-          <p className="text-sm text-ink-600">
-            Here's where things stand with your company account.
-          </p>
-        </div>
-        <Button size="sm" disabled={statusDisplay.tone !== 'success'}>
-          Post a listing
-        </Button>
-      </div>
+    <div className="flex flex-col gap-8">
+      <DashboardPageHeader
+        title="Dashboard"
+        description="Here's where things stand with your company account."
+        actions={
+          <Button size="sm" disabled={statusDisplay.tone !== 'success'}>
+            Post a listing
+          </Button>
+        }
+      />
 
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <Card>
