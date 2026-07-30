@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, type MouseEvent } from 'react'
-import { HOW_IT_WORKS_SECTIONS } from '@/components/how-it-works/howItWorksSections'
+import { FOR_STUDENTS_SECTIONS } from '@/components/for-students/forStudentsSections'
 import { useActiveSection } from '@/hooks/useActiveSection'
 import { scrollToSection } from '@/utils/scrollToSection'
 import { cn } from '@/utils/cn'
@@ -18,12 +18,12 @@ function pillClasses(active: boolean) {
   )
 }
 
-export function HowItWorksSectionNav() {
-  const sectionIds = useMemo(() => HOW_IT_WORKS_SECTIONS.map((s) => s.id), [])
+export function ForStudentsSectionNav() {
+  const sectionIds = useMemo(() => FOR_STUDENTS_SECTIONS.map((s) => s.id), [])
   const activeId = useActiveSection(sectionIds, SCROLL_OFFSET_PX)
   const itemRefs = useRef<Record<string, HTMLAnchorElement | null>>({})
 
-  // Direct link support: /how-it-works#skill-gaps scrolls there after load.
+  // Direct link support: /for-students#skill-gaps scrolls there after load.
   useEffect(() => {
     const hash = window.location.hash.replace('#', '')
     if (!hash || !sectionIds.includes(hash)) return
@@ -51,7 +51,7 @@ export function HowItWorksSectionNav() {
 
   return (
     <nav
-      aria-label="How It Works sections"
+      aria-label="For Students sections"
       className="sticky top-16 z-30 border-b border-border bg-surface/95 backdrop-blur"
     >
       <div className="mx-auto max-w-7xl px-6 py-3">
@@ -64,7 +64,7 @@ export function HowItWorksSectionNav() {
           <span className="mr-1 shrink-0 text-xs font-semibold uppercase tracking-wide text-ink-400">
             Explore SkillMatch
           </span>
-          {HOW_IT_WORKS_SECTIONS.map((section) => (
+          {FOR_STUDENTS_SECTIONS.map((section) => (
             <a
               key={section.id}
               ref={(el) => {
@@ -82,7 +82,7 @@ export function HowItWorksSectionNav() {
 
         {/* Mobile: horizontally scrollable, scrollbar hidden. */}
         <div className="-mx-6 flex gap-2 overflow-x-auto px-6 [-ms-overflow-style:none] [scrollbar-width:none] sm:hidden [&::-webkit-scrollbar]:hidden">
-          {HOW_IT_WORKS_SECTIONS.map((section) => (
+          {FOR_STUDENTS_SECTIONS.map((section) => (
             <a
               key={section.id}
               ref={(el) => {
