@@ -7,7 +7,7 @@ import { useAuth } from '@/features/auth/useAuth'
 const navLinks = [
   { label: 'Home', to: '/' },
   { label: 'How It Works', to: APP_ROUTES.howItWorks },
-  { label: 'For Students', to: '/#for-students' },
+  { label: 'For Students', to: APP_ROUTES.forStudents },
   { label: 'For Companies', to: '/#for-companies' },
 ]
 
@@ -57,7 +57,7 @@ export function PublicHeader() {
                 Log In
               </Link>
               <Link to={APP_ROUTES.register}>
-                <Button size="sm">Sign Up</Button>
+                <Button size="sm">Get Started</Button>
               </Link>
             </>
           )}

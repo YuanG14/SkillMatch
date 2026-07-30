@@ -163,33 +163,3 @@ export function ArrowDownIcon(props: IconProps) {
     </svg>
   )
 }
-
-export function TargetIcon(props: IconProps) {
-  return (
-    <svg {...base(props)}>
-      <circle cx="12" cy="12" r="8.5" />
-      <circle cx="12" cy="12" r="4.5" />
-      <circle cx="12" cy="12" r="0.6" fill="currentColor" stroke="none" />
-    </svg>
-  )
-}
-
-export function ClipboardCheckIcon(props: IconProps) {
-  return (
-    <svg {...base(props)}>
-      <rect x="5" y="4.5" width="14" height="16" rx="2" />
-      <path d="M9 4.5V3.75A1.25 1.25 0 0 1 10.25 2.5h3.5A1.25 1.25 0 0 1 15 3.75V4.5" />
-      <path d="m8.5 13 2.2 2.2 4.3-4.7" />
-    </svg>
-  )
-}
-
-export function LayersIcon(props: IconProps) {
-  return (
-    <svg {...base(props)}>
-      <path d="m12 3 8.5 4.5L12 12 3.5 7.5 12 3Z" />
-      <path d="m3.5 12 8.5 4.5 8.5-4.5" />
-      <path d="m3.5 16.5 8.5 4.5 8.5-4.5" />
-    </svg>
-  )
-}
