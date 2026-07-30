@@ -47,6 +47,13 @@ export function ForStudentsSectionNav() {
     event.preventDefault()
     scrollToSection(id, 'auto')
     window.history.replaceState(null, '', `#${id}`)
+    // Mouse clicks (event.detail > 0) leave a stale focus-visible ring on the
+    // pill in some browsers even after the active section moves elsewhere as
+    // the user scrolls. Keyboard activation (detail === 0) keeps focus so the
+    // ring stays visible, which is what accessibility needs.
+    if (event.detail > 0) {
+      event.currentTarget.blur()
+    }
   }
 
   return (
