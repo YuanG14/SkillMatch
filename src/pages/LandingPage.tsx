@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/Button'
 import { Card, CardContent } from '@/components/ui/Card'
 import { Badge } from '@/components/ui/Badge'
 import { MatchRing } from '@/components/ui/MatchRing'
+import { ArrowRightIcon } from '@/components/ui/icons'
 
 const features = [
   {
@@ -160,6 +161,13 @@ export function LandingPage() {
               </div>
             ))}
           </div>
+          <Link
+            to={APP_ROUTES.howItWorks}
+            className="mt-8 inline-flex items-center gap-1.5 text-sm font-medium text-primary-600 hover:text-primary-700"
+          >
+            See how it works in detail
+            <ArrowRightIcon width={15} height={15} />
+          </Link>
         </div>
       </section>
 

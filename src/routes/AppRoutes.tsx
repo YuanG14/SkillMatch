@@ -20,6 +20,7 @@ import {
 } from '@/pages/authPages'
 
 import { LandingPage } from '@/pages/LandingPage'
+import { HowItWorksPage } from '@/pages/HowItWorksPage'
 import { ForStudentsPage } from '@/pages/ForStudentsPage'
 import { ComingSoonPage } from '@/pages/ComingSoonPage'
 import { NotFoundPage } from '@/pages/NotFoundPage'
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <LandingPage />,
+          },
+          {
+            path: APP_ROUTES.howItWorks,
+            element: <HowItWorksPage />,
           },
           {
             path: APP_ROUTES.forStudents,

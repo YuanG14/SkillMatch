@@ -119,3 +119,47 @@ export function ChartIcon(props: IconProps) {
     </svg>
   )
 }
+
+export function CheckIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path d="m5 12.5 4.5 4.5L19 7" />
+    </svg>
+  )
+}
+
+export function CircleDashedIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <circle cx="12" cy="12" r="8" strokeDasharray="3 4" />
+    </svg>
+  )
+}
+
+export function AlertTriangleIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path d="M12 4 2.5 20h19L12 4Z" />
+      <path d="M12 10.5v4.25" />
+      <path d="M12 17.75h.01" />
+    </svg>
+  )
+}
+
+export function ArrowRightIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path d="M4 12h15" />
+      <path d="m13.5 6 6 6-6 6" />
+    </svg>
+  )
+}
+
+export function ArrowDownIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path d="M12 4v15" />
+      <path d="m6 13.5 6 6 6-6" />
+    </svg>
+  )
+}
