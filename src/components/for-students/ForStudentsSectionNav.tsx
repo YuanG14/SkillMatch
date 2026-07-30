@@ -63,13 +63,13 @@ export function ForStudentsSectionNav() {
     >
       <div className="mx-auto max-w-7xl px-6 py-3">
         <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-ink-400 sm:hidden">
-          Explore SkillMatch
+          On This Page
         </p>
 
         {/* Desktop / tablet: wraps into rows of compact pills. */}
         <div className="hidden flex-wrap items-center justify-center gap-2 sm:flex">
           <span className="mr-1 shrink-0 text-xs font-semibold uppercase tracking-wide text-ink-400">
-            Explore SkillMatch
+            On This Page
           </span>
           {FOR_STUDENTS_SECTIONS.map((section) => (
             <a
