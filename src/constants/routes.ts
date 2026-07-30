@@ -8,6 +8,7 @@ export const APP_ROUTES = {
   resetPassword: '/reset-password',
   authCallback: '/auth/callback',
   verifyEmail: '/verify-email',
+  forStudents: '/for-students',
   studentDashboard: '/student',
   companyDashboard: '/company',
   adminDashboard: '/admin',

@@ -20,6 +20,7 @@ import {
 } from '@/pages/authPages'
 
 import { LandingPage } from '@/pages/LandingPage'
+import { ForStudentsPage } from '@/pages/ForStudentsPage'
 import { ComingSoonPage } from '@/pages/ComingSoonPage'
 import { NotFoundPage } from '@/pages/NotFoundPage'
 
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <LandingPage />,
+          },
+          {
+            path: APP_ROUTES.forStudents,
+            element: <ForStudentsPage />,
           },
           {
             path: APP_ROUTES.login,
