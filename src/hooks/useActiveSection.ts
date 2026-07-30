@@ -43,7 +43,14 @@ export function useActiveSection(sectionIds: string[], offsetPx: number) {
           }
         }
 
-        const nextActive = sectionIds.find((id) => visibleIds.current.has(id))
+        // More than one section can straddle the detection band at once --
+        // e.g. right as a short section's bottom and the next section's top
+        // both clip the band near a transition. sectionIds is in top-to-
+        // bottom document order, so scanning from the end picks the
+        // bottom-most (most recently entered) visible section, i.e. the one
+        // the user has actually scrolled into, rather than the one they're
+        // leaving.
+        const nextActive = [...sectionIds].reverse().find((id) => visibleIds.current.has(id))
         if (nextActive) setActiveId(nextActive)
       },
       {
