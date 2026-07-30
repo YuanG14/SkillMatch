@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import type { FormEvent } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { APP_ROUTES, ROLE_DASHBOARD_ROUTES } from '@/constants/routes'
 import { AuthLayout } from '@/features/auth/AuthLayout'
 import { PageStatus } from '@/features/auth/ProtectedRoute'
@@ -18,10 +18,12 @@ function SubmitButton({ isSubmitting, children }: { isSubmitting: boolean; child
 }
 
 export function LoginPage() {
-  const navigate = useNavigate(); const location = useLocation(); const { user, profile, isLoading, signOut } = useAuth()
+  const navigate = useNavigate(); const location = useLocation(); const { user, profile, isLoading } = useAuth()
   const [error, setError] = useState<string | null>(null); const [isSubmitting, setIsSubmitting] = useState(false)
   if (isLoading) return <PageStatus message="Loading…" />
-  if (user && profile) return <AuthLayout><h1 className="mt-6 text-2xl font-semibold">You are already signed in</h1><p className="mt-3 text-slate-600">You are signed in as {profile.email} with {profile.role} access.</p><Link className="mt-6 inline-block rounded-md bg-blue-700 px-4 py-2 font-medium text-white" to={ROLE_DASHBOARD_ROUTES[profile.role]}>Continue to dashboard</Link><button className="mt-3 block text-sm text-blue-700" onClick={() => void signOut()} type="button">Sign out and use another account</button></AuthLayout>
+  // Already authenticated: skip the login form entirely and go straight to the
+  // role-appropriate dashboard, matching real production SaaS behavior.
+  if (user && profile) return <Navigate to={ROLE_DASHBOARD_ROUTES[profile.role]} replace />
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault(); setError(null); setIsSubmitting(true)
     const form = new FormData(event.currentTarget); const { error: signInError } = await signIn(String(form.get('email')), String(form.get('password')))
@@ -35,6 +37,9 @@ export function LoginPage() {
 
 export function RegisterPage() {
   const [error, setError] = useState<string | null>(null); const [isSubmitting, setIsSubmitting] = useState(false); const navigate = useNavigate()
+  const { user, profile, isLoading } = useAuth()
+  if (isLoading) return <PageStatus message="Loading…" />
+  if (user && profile) return <Navigate to={ROLE_DASHBOARD_ROUTES[profile.role]} replace />
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault(); setError(null); const form = new FormData(event.currentTarget); const password = String(form.get('password')); const confirmation = String(form.get('passwordConfirmation'))
     if (password !== confirmation) { setError('Passwords do not match.'); return }
