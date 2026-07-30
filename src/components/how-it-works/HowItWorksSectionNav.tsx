@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, type MouseEvent } from 'react'
+import { useEffect, useMemo, useRef, useState, type MouseEvent } from 'react'
 import { HOW_IT_WORKS_SECTIONS } from '@/components/how-it-works/howItWorksSections'
 import { useActiveSection } from '@/hooks/useActiveSection'
 import { scrollToSection } from '@/utils/scrollToSection'
@@ -8,10 +8,15 @@ import { cn } from '@/utils/cn'
 // little breathing room so a section heading never lands underneath either.
 const SCROLL_OFFSET_PX = 140
 
+// How long a clicked pill stays highlighted before handing control back to
+// scroll-driven detection. Long enough for the jump + intersection update to
+// settle, short enough that a real subsequent scroll takes over quickly.
+const CLICK_OVERRIDE_MS = 700
+
 function pillClasses(active: boolean) {
   return cn(
     'shrink-0 whitespace-nowrap rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors',
-    'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600',
+    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-600',
     active
       ? 'border-primary-100 bg-primary-50 text-primary-700'
       : 'border-transparent text-ink-600 hover:bg-surface-muted hover:text-ink-900',
@@ -20,8 +25,21 @@ function pillClasses(active: boolean) {
 
 export function HowItWorksSectionNav() {
   const sectionIds = useMemo(() => HOW_IT_WORKS_SECTIONS.map((s) => s.id), [])
-  const activeId = useActiveSection(sectionIds, SCROLL_OFFSET_PX)
+  const observedActiveId = useActiveSection(sectionIds, SCROLL_OFFSET_PX)
+  const [clickedId, setClickedId] = useState<string | null>(null)
+  const clickTimeoutRef = useRef<number | undefined>(undefined)
   const itemRefs = useRef<Record<string, HTMLAnchorElement | null>>({})
+
+  // Prefer whatever the user just clicked over the scroll-driven value --
+  // an instant scrollIntoView jump can land a section's top exactly on the
+  // observer's boundary with zero measurable overlap, which some browsers
+  // never report as "intersecting". Highlighting the clicked pill directly
+  // means the nav is never stuck out of sync with an instant jump.
+  const activeId = clickedId ?? observedActiveId
+
+  useEffect(() => {
+    return () => window.clearTimeout(clickTimeoutRef.current)
+  }, [])
 
   // Direct link support: /how-it-works#skill-gaps scrolls there after load.
   useEffect(() => {
@@ -47,6 +65,11 @@ export function HowItWorksSectionNav() {
     event.preventDefault()
     scrollToSection(id, 'auto')
     window.history.replaceState(null, '', `#${id}`)
+
+    setClickedId(id)
+    window.clearTimeout(clickTimeoutRef.current)
+    clickTimeoutRef.current = window.setTimeout(() => setClickedId(null), CLICK_OVERRIDE_MS)
+
     // Mouse clicks (event.detail > 0) leave a stale focus-visible ring on the
     // pill in some browsers even after the active section moves elsewhere as
     // the user scrolls. Keyboard activation (detail === 0) keeps focus so the

@@ -24,6 +24,14 @@ export function useActiveSection(sectionIds: string[], offsetPx: number) {
 
     if (elements.length === 0) return
 
+    // Sections use `scroll-mt-[${offsetPx}px]` so scrollIntoView lands their
+    // top edge exactly on this boundary. Using the same value for rootMargin
+    // would leave zero pixels of overlap right after a jump -- some browsers
+    // then never report `isIntersecting: true` for that section until the
+    // user scrolls further. Shrinking the band by a few px guarantees a
+    // sliver of real overlap the instant the jump lands.
+    const EDGE_BUFFER_PX = 8
+
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -39,7 +47,7 @@ export function useActiveSection(sectionIds: string[], offsetPx: number) {
         if (nextActive) setActiveId(nextActive)
       },
       {
-        rootMargin: `-${offsetPx}px 0px -65% 0px`,
+        rootMargin: `-${Math.max(offsetPx - EDGE_BUFFER_PX, 0)}px 0px -65% 0px`,
         threshold: 0,
       },
     )

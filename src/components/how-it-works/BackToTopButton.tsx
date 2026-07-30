@@ -31,7 +31,7 @@ export function BackToTopButton() {
       onClick={handleClick}
       aria-label="Back to top"
       className={cn(
-        'fixed bottom-6 right-6 z-30 flex h-11 w-11 items-center justify-center rounded-full border border-border bg-surface text-ink-700 shadow-md transition-all duration-300 hover:border-ink-400 hover:text-ink-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600',
+        'fixed bottom-6 right-6 z-30 flex h-11 w-11 items-center justify-center rounded-full border border-border bg-surface text-ink-700 shadow-md transition-all duration-300 hover:border-ink-400 hover:text-ink-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-600',
         visible
           ? 'translate-y-0 opacity-100'
           : 'pointer-events-none translate-y-2 opacity-0',
