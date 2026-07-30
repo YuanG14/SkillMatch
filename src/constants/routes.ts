@@ -9,7 +9,6 @@ export const APP_ROUTES = {
   authCallback: '/auth/callback',
   verifyEmail: '/verify-email',
   howItWorks: '/how-it-works',
-  forStudents: '/for-students',
   studentDashboard: '/student',
   companyDashboard: '/company',
   adminDashboard: '/admin',
