@@ -4,12 +4,10 @@ import { useAuth } from '@/features/auth/useAuth'
 import { ForStudentsHero } from '@/components/for-students/ForStudentsHero'
 import { ForStudentsSectionNav } from '@/components/for-students/ForStudentsSectionNav'
 import { ProblemSection } from '@/components/for-students/ProblemSection'
-import { MatchingSection } from '@/components/for-students/MatchingSection'
-import { MatchScoreSection } from '@/components/for-students/MatchScoreSection'
-import { SkillGapSection } from '@/components/for-students/SkillGapSection'
-import { RecommendationsSection } from '@/components/for-students/RecommendationsSection'
+import { FitPreviewSection } from '@/components/for-students/FitPreviewSection'
 import { JourneySection } from '@/components/for-students/JourneySection'
 import { BenefitsSection } from '@/components/for-students/BenefitsSection'
+import { CareerReadinessSection } from '@/components/for-students/CareerReadinessSection'
 import { FinalCtaSection } from '@/components/for-students/FinalCtaSection'
 import { BackToTopButton } from '@/components/how-it-works/BackToTopButton'
 
@@ -33,12 +31,10 @@ export function ForStudentsPage() {
       <ForStudentsHero primaryCta={primaryCta} />
       <ForStudentsSectionNav />
       <ProblemSection />
-      <MatchingSection />
-      <MatchScoreSection />
-      <SkillGapSection />
-      <RecommendationsSection />
+      <FitPreviewSection />
       <JourneySection />
       <BenefitsSection />
+      <CareerReadinessSection />
       <FinalCtaSection primaryCta={primaryCta} />
       <BackToTopButton />
     </>

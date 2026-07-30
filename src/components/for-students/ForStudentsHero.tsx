@@ -30,7 +30,7 @@ export function ForStudentsHero({ primaryCta }: ForStudentsHeroProps) {
               <Button size="lg">{primaryCta.label}</Button>
             </Link>
             <a
-              href="#matching"
+              href="#see-your-fit"
               className="text-sm font-medium text-ink-700 hover:text-ink-900"
             >
               How it works &rarr;

@@ -34,7 +34,7 @@ export function ProblemSection() {
           ))}
         </div>
 
-        <NextSectionLink targetId="matching" label="Matching" />
+        <NextSectionLink targetId="see-your-fit" label="See Your Fit" />
       </div>
     </section>
   )

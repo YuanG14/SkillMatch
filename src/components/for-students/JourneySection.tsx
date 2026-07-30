@@ -4,24 +4,24 @@ import { NextSectionLink } from '@/components/how-it-works/NextSectionLink'
 
 const journey = [
   {
-    number: '01',
-    title: 'Build your profile',
-    description: 'Add your education, skills, projects, experience, and preferences.',
+    stage: 'Uncertainty',
+    quote: '\u201cI don\u2019t know where to start.\u201d',
   },
   {
-    number: '02',
-    title: 'Discover opportunities',
-    description: 'Browse internships that line up with your profile.',
+    stage: 'Discovery',
+    quote: '\u201cI found opportunities that fit me.\u201d',
   },
   {
-    number: '03',
-    title: 'Understand your match',
-    description: 'See your Match Score and why an opportunity fits.',
+    stage: 'Confidence',
+    quote: '\u201cI understand why I\u2019m a good match.\u201d',
   },
   {
-    number: '04',
-    title: 'Apply with confidence',
-    description: 'Use skill gap insights and recommendations to apply smarter.',
+    stage: 'Growth',
+    quote: '\u201cI know what I should improve.\u201d',
+  },
+  {
+    stage: 'Action',
+    quote: '\u201cI\u2019m ready to apply.\u201d',
   },
 ]
 
@@ -33,19 +33,21 @@ export function JourneySection() {
     >
       <div className="mx-auto max-w-7xl px-6">
         <Reveal>
-          <SectionHeading eyebrow="Your Journey" title="Your journey with SkillMatch" />
+          <SectionHeading
+            eyebrow="Your Journey"
+            title="From uncertainty to a well-fitted opportunity."
+          />
         </Reveal>
 
-        <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
           {journey.map((step, index) => (
-            <Reveal key={step.number} delay={index * 60}>
-              <span className="font-display text-3xl font-semibold text-primary-600">
-                {step.number}
-              </span>
-              <h3 className="mt-3 font-display text-base font-semibold text-ink-900">
-                {step.title}
-              </h3>
-              <p className="mt-1 text-sm text-ink-600">{step.description}</p>
+            <Reveal key={step.stage} delay={index * 60}>
+              <p className="text-xs font-semibold uppercase tracking-wide text-primary-600">
+                {step.stage}
+              </p>
+              <p className="mt-2 font-display text-base font-semibold text-ink-900">
+                {step.quote}
+              </p>
             </Reveal>
           ))}
         </div>

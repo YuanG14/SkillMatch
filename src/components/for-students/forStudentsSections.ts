@@ -10,10 +10,8 @@ export interface ForStudentsSection {
  */
 export const FOR_STUDENTS_SECTIONS: ForStudentsSection[] = [
   { id: 'the-problem', label: 'The Problem' },
-  { id: 'matching', label: 'Matching' },
-  { id: 'match-score', label: 'Match Score' },
-  { id: 'skill-gaps', label: 'Skill Gaps' },
-  { id: 'recommendations', label: 'Recommendations' },
+  { id: 'see-your-fit', label: 'See Your Fit' },
   { id: 'your-journey', label: 'Your Journey' },
   { id: 'benefits', label: 'Benefits' },
+  { id: 'career-readiness', label: 'Career Readiness' },
 ]

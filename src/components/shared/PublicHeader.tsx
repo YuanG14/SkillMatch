@@ -11,7 +11,7 @@ const navLinks = [
   { label: 'Home', to: '/' },
   { label: 'How It Works', to: APP_ROUTES.howItWorks },
   { label: 'For Students', to: APP_ROUTES.forStudents },
-  { label: 'For Companies', to: '/#for-companies' },
+  { label: 'For Companies', to: APP_ROUTES.forCompanies },
 ]
 
 function isLinkActive(pathname: string, to: string) {

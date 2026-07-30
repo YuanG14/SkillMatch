@@ -1,7 +1,6 @@
 import { Card, CardContent } from '@/components/ui/Card'
 import { SectionHeading } from '@/components/how-it-works/SectionHeading'
 import { Reveal } from '@/components/how-it-works/Reveal'
-import { NextSectionLink } from '@/components/how-it-works/NextSectionLink'
 import {
   BriefcaseIcon,
   ChartIcon,
@@ -14,41 +13,41 @@ import {
 const benefits = [
   {
     icon: SearchIcon,
-    title: 'Find better-fit internships',
-    description: 'Spend less time browsing listings that were never going to fit.',
+    title: 'Discover candidates by skill, not keywords',
+    description: 'See applicants ranked by how closely they match what the role needs.',
   },
   {
     icon: ChartIcon,
-    title: 'Understand your strengths',
-    description: 'See which skills make you a strong candidate for a role.',
+    title: 'Compare candidates fairly',
+    description: 'A consistent match score makes it easy to see who stands out, and why.',
   },
   {
     icon: BriefcaseIcon,
-    title: 'Identify skill gaps',
-    description: 'Know exactly what to learn next to become a stronger applicant.',
+    title: 'Post requirements once',
+    description: 'Define what the internship needs and let SkillMatch do the sorting.',
   },
   {
     icon: UsersIcon,
-    title: 'Build a stronger profile',
-    description: 'Showcase your education, projects, skills, and experience in one place.',
+    title: 'Manage applicants in one place',
+    description: 'Review, shortlist, and track every candidate without spreadsheets.',
   },
   {
     icon: FileTextIcon,
-    title: 'Make better applications',
-    description: 'Understand an opportunity before you spend time applying.',
+    title: 'See more than a resume',
+    description: 'Skills, projects, education, and experience, all in one profile.',
   },
   {
     icon: SettingsIcon,
-    title: 'Track your progress',
-    description: 'Keep every application organized from submitted to offer.',
+    title: 'Spend less time screening',
+    description: "Focus your team's time on candidates worth interviewing.",
   },
 ]
 
 export function BenefitsSection() {
   return (
-    <section id="benefits" className="mx-auto max-w-7xl scroll-mt-[140px] px-6 py-20">
+    <section className="mx-auto max-w-7xl px-6 py-20">
       <Reveal>
-        <SectionHeading eyebrow="Benefits" title="Built around your career journey." />
+        <SectionHeading eyebrow="Why SkillMatch" title="Hire with confidence, not guesswork." />
       </Reveal>
 
       <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -66,8 +65,6 @@ export function BenefitsSection() {
           </Reveal>
         ))}
       </div>
-
-      <NextSectionLink targetId="career-readiness" label="Career Readiness" />
     </section>
   )
 }

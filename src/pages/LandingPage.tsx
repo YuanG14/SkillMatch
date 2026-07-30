@@ -33,22 +33,22 @@ const features = [
 const steps = [
   {
     number: '01',
-    title: 'Create Your Profile',
+    title: 'Build Your Profile',
     description: 'Tell SkillMatch about your background and goals.',
   },
   {
     number: '02',
-    title: 'Add Your Skills',
-    description: 'List what you know -- SkillMatch handles the rest.',
-  },
-  {
-    number: '03',
-    title: 'Discover Matches',
+    title: 'Discover Opportunities',
     description: 'Get a ranked list of internships that fit.',
   },
   {
+    number: '03',
+    title: 'Understand Your Match',
+    description: 'See your Match Score and where you stand.',
+  },
+  {
     number: '04',
-    title: 'Apply & Track',
+    title: 'Apply With Confidence',
     description: 'Submit applications and follow their progress.',
   },
 ]
@@ -71,17 +71,18 @@ export function LandingPage() {
               Find internships that match your skills.
             </h1>
             <p className="mt-5 max-w-lg text-lg text-ink-600">
-              SkillMatch connects students with internship opportunities based on their
-              skills, experience, goals, and career preferences.
+              SkillMatch helps students discover internship opportunities that align
+              with their skills, education, experience, and career goals.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
               <Link to={APP_ROUTES.register}>
-                <Button size="lg">Find Your Match</Button>
+                <Button size="lg">Get Started</Button>
               </Link>
-              <Link to={`${APP_ROUTES.register}?as=company`}>
-                <Button size="lg" variant="outline">
-                  I&apos;m a Company
-                </Button>
+              <Link
+                to={APP_ROUTES.howItWorks}
+                className="text-sm font-medium text-ink-700 hover:text-ink-900"
+              >
+                How It Works &rarr;
               </Link>
             </div>
           </div>
@@ -118,11 +119,8 @@ export function LandingPage() {
         </div>
       </section>
 
-      {/* Features */}
-      <section
-        id="for-students"
-        className="border-t border-border bg-surface-muted py-20"
-      >
+      {/* Core features */}
+      <section id="features" className="border-t border-border bg-surface-muted py-20">
         <div className="mx-auto max-w-7xl px-6">
           <h2 className="font-display text-2xl font-semibold text-ink-950 sm:text-3xl">
             Built around how matching actually works
@@ -142,11 +140,11 @@ export function LandingPage() {
         </div>
       </section>
 
-      {/* How it works */}
-      <section id="how-it-works" className="py-20">
+      {/* How it works preview */}
+      <section id="how-it-works-preview" className="py-20">
         <div className="mx-auto max-w-7xl px-6">
           <h2 className="font-display text-2xl font-semibold text-ink-950 sm:text-3xl">
-            How it works
+            How SkillMatch works
           </h2>
           <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((step) => (
@@ -165,31 +163,74 @@ export function LandingPage() {
             to={APP_ROUTES.howItWorks}
             className="mt-8 inline-flex items-center gap-1.5 text-sm font-medium text-primary-600 hover:text-primary-700"
           >
-            See how it works in detail
+            See How It Works
             <ArrowRightIcon width={15} height={15} />
           </Link>
         </div>
       </section>
 
-      {/* For companies */}
+      {/* Students + Companies */}
       <section
-        id="for-companies"
+        id="students-companies"
         className="border-t border-border bg-surface-muted py-20"
       >
-        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-6 sm:flex-row sm:items-center">
-          <div>
-            <h2 className="font-display text-2xl font-semibold text-ink-950">
-              Hiring interns? Skip the noise.
-            </h2>
-            <p className="mt-2 max-w-md text-ink-600">
-              Post a listing and see candidates ranked by real skill fit, not keyword
-              matching.
-            </p>
+        <div className="mx-auto max-w-7xl px-6">
+          <h2 className="font-display text-2xl font-semibold text-ink-950 sm:text-3xl">
+            Built for both sides of the internship search
+          </h2>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2">
+            <Card>
+              <CardContent className="flex h-full flex-col gap-3">
+                <h3 className="font-display text-lg font-semibold text-ink-900">
+                  For Students
+                </h3>
+                <p className="flex-1 text-sm text-ink-600">
+                  Find internships that fit your skills, and know exactly where you
+                  stand before you apply.
+                </p>
+                <Link
+                  to={APP_ROUTES.forStudents}
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-primary-600 hover:text-primary-700"
+                >
+                  Explore For Students
+                  <ArrowRightIcon width={15} height={15} />
+                </Link>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="flex h-full flex-col gap-3">
+                <h3 className="font-display text-lg font-semibold text-ink-900">
+                  For Companies
+                </h3>
+                <p className="flex-1 text-sm text-ink-600">
+                  Post internships and review applicants ranked by real skill fit,
+                  not keyword matching.
+                </p>
+                <Link
+                  to={APP_ROUTES.forCompanies}
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-primary-600 hover:text-primary-700"
+                >
+                  Explore For Companies
+                  <ArrowRightIcon width={15} height={15} />
+                </Link>
+              </CardContent>
+            </Card>
           </div>
-          <Link to="/signup?as=company">
-            <Button size="lg" variant="outline">
-              I&apos;m a Company
-            </Button>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="border-t border-border bg-ink-950 py-20">
+        <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-6 text-center">
+          <h2 className="font-display max-w-2xl text-2xl font-semibold text-white sm:text-3xl">
+            Find internships that actually fit.
+          </h2>
+          <p className="max-w-md text-ink-400">
+            Create your SkillMatch profile and start discovering opportunities
+            aligned with your skills and goals.
+          </p>
+          <Link to={APP_ROUTES.register}>
+            <Button size="lg">Get Started</Button>
           </Link>
         </div>
       </section>

@@ -10,6 +10,7 @@ export const APP_ROUTES = {
   verifyEmail: '/verify-email',
   howItWorks: '/how-it-works',
   forStudents: '/for-students',
+  forCompanies: '/for-companies',
   studentDashboard: '/student',
   companyDashboard: '/company',
   adminDashboard: '/admin',
