@@ -10,7 +10,7 @@ import { EmptyState } from '@/components/ui/EmptyState'
 import { Button } from '@/components/ui/Button'
 import { MatchRing } from '@/components/ui/MatchRing'
 import { Spinner } from '@/components/ui/Spinner'
-import { DashboardPageHeader } from '@/components/dashboard/DashboardPageHeader'
+import { StudentHero } from '@/components/dashboard/student/StudentHero'
 import { useStudentProfile } from '@/features/studentProfile/useStudentProfile'
 import { calculateProfileCompletion } from '@/utils/profileCompletion'
 
@@ -20,10 +20,7 @@ export function StudentDashboardPage() {
 
   return (
     <div className="flex flex-col gap-8">
-      <DashboardPageHeader
-        title="Dashboard"
-        description="Here's where things stand with your SkillMatch profile."
-      />
+      <StudentHero />
 
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <Card>
