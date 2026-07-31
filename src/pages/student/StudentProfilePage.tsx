@@ -16,6 +16,8 @@ import { TagInput } from '@/components/ui/TagInput'
 import { Button } from '@/components/ui/Button'
 import { Spinner } from '@/components/ui/Spinner'
 import { ErrorState } from '@/components/ui/ErrorState'
+import { MatchRing } from '@/components/ui/MatchRing'
+import { ProfileHeader } from '@/components/dashboard/ProfileHeader'
 import { useStudentProfile } from '@/features/studentProfile/useStudentProfile'
 import { studentProfileToFormValues } from '@/types/studentProfile'
 import type { StudentProfileFormValues, RemotePreference } from '@/types/studentProfile'
@@ -64,23 +66,31 @@ export function StudentProfilePage() {
   }
 
   const completion = calculateProfileCompletion(profile)
+  const completionMessage =
+    completion.percent === 100
+      ? "You're all set — your profile is complete."
+      : `Add ${completion.missingFields[0]!.toLowerCase()} to improve your matches.`
 
   return (
-    <div className="mx-auto flex max-w-3xl flex-col gap-6">
-      <div>
-        <h1 className="font-display text-2xl font-semibold text-ink-950">Your profile</h1>
-        <p className="text-sm text-ink-600">
-          {completion.percent}% complete
-          {completion.missingFields.length > 0 &&
-            ` — add ${completion.missingFields[0]!.toLowerCase()} to improve your matches.`}
-        </p>
-      </div>
+    <div className="flex flex-col gap-8">
+      <ProfileHeader
+        title="Your profile"
+        rightSlot={
+          <>
+            <MatchRing value={completion.percent} size={64} />
+            <div className="max-w-[12rem]">
+              <p className="text-sm font-semibold text-ink-900">Profile completion</p>
+              <p className="text-xs text-ink-600">{completionMessage}</p>
+            </div>
+          </>
+        }
+      />
 
       {error && <ErrorState title="Something went wrong" description={error} />}
 
       <form
         onSubmit={(event) => void handleSubmit(event)}
-        className="flex flex-col gap-6"
+        className="grid grid-cols-1 gap-6 lg:grid-cols-2"
       >
         <Card>
           <CardHeader>
@@ -178,14 +188,14 @@ export function StudentProfilePage() {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="lg:col-span-2">
           <CardHeader>
             <CardTitle>Internship preferences</CardTitle>
             <CardDescription>
               Helps SkillMatch rank opportunities for you.
             </CardDescription>
           </CardHeader>
-          <CardContent className="grid gap-4 sm:grid-cols-2">
+          <CardContent className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <TagInput
               label="Preferred roles"
               values={values.preferredRoles}
