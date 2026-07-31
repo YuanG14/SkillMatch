@@ -6,7 +6,8 @@ import { DashboardSection } from '@/components/dashboard/DashboardSection'
 import { StatCard } from '@/components/dashboard/StatCard'
 import { InternshipRecommendationCard } from '@/components/dashboard/student/InternshipRecommendationCard'
 import { RecentApplicationsTable } from '@/components/dashboard/student/RecentApplicationsTable'
-import { FileTextIcon, UsersIcon, ChartIcon, UserIcon } from '@/components/ui/icons'
+import { ProfileCompletionCard } from '@/components/dashboard/student/ProfileCompletionCard'
+import { FileTextIcon, UsersIcon, ChartIcon } from '@/components/ui/icons'
 import { useStudentProfile } from '@/features/studentProfile/useStudentProfile'
 import { calculateProfileCompletion } from '@/utils/profileCompletion'
 import {
@@ -23,7 +24,7 @@ export function StudentDashboardPage() {
     <div className="flex flex-col gap-8">
       <StudentHero />
 
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-5 sm:grid-cols-3">
         <StatCard
           label="Total Applications"
           value={String(MOCK_DASHBOARD_STATS.totalApplications)}
@@ -44,17 +45,9 @@ export function StudentDashboardPage() {
           supportingText={MOCK_DASHBOARD_STATS.averageMatchScoreTrend}
           icon={ChartIcon}
         />
-        <StatCard
-          label="Profile Completion"
-          value={`${completion.percent}%`}
-          supportingText={
-            completion.percent === 100
-              ? 'Your profile is complete'
-              : `${completion.missingFields.length} fields left`
-          }
-          icon={UserIcon}
-        />
       </div>
+
+      <ProfileCompletionCard completion={completion} />
 
       <div className="grid gap-6 lg:grid-cols-5 lg:items-start">
         <DashboardSection

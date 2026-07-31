@@ -40,22 +40,22 @@ export function StudentHero() {
         </Link>
       }
       illustration={
-        <div className="relative mx-auto flex w-full max-w-sm items-center justify-center py-6 lg:max-w-lg lg:py-4">
+        <div className="relative mx-auto flex w-full max-w-xs items-center justify-center py-6 lg:max-w-sm lg:py-4">
           {/* Soft background shape ties the illustration into the blue/white palette */}
           <div
             aria-hidden="true"
-            className="absolute inset-6 rounded-[2.5rem] bg-primary-100/70 blur-2xl lg:inset-4"
+            className="absolute inset-8 rounded-[2.5rem] bg-primary-100/70 blur-2xl"
           />
 
           <img
             src={heroIllustration}
             alt="Student intern reviewing recommended internships on a tablet"
-            className="relative z-10 h-auto w-64 rounded-2xl object-cover shadow-lg sm:w-80 lg:w-full"
+            className="relative z-10 h-auto w-48 rounded-2xl object-cover shadow-lg sm:w-56 lg:w-64"
           />
 
           {/* Top match -- mock: matching isn't built yet, shown for layout only */}
-          <Card className="absolute -left-2 top-2 z-20 hidden w-40 flex-col items-center gap-2 p-3 shadow-md sm:flex lg:-left-8">
-            <MatchRing value={MOCK_TOP_MATCH.matchPercent} size={52} />
+          <Card className="absolute -left-2 top-2 z-20 hidden w-36 flex-col items-center gap-2 p-3 shadow-md sm:flex lg:-left-6">
+            <MatchRing value={MOCK_TOP_MATCH.matchPercent} size={44} />
             <div className="text-center">
               <p className="text-xs font-semibold leading-tight text-ink-900">
                 {MOCK_TOP_MATCH.internshipTitle}
@@ -67,13 +67,13 @@ export function StudentHero() {
           </Card>
 
           {/* Recommended preview -- mock: real recommendations aren't built yet */}
-          <Card className="absolute -right-2 top-0 z-20 hidden w-52 p-3 shadow-md sm:block lg:-right-10">
+          <Card className="absolute -right-2 top-0 z-20 hidden w-44 p-3 shadow-md sm:block lg:-right-6">
             <p className="mb-2 text-xs font-semibold text-ink-900">Recommended for you</p>
             <ul className="flex flex-col gap-2">
               {recommendedPreview.map((item) => (
                 <li key={item.id} className="flex items-center gap-2">
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary-50 text-primary-600">
-                    <BriefcaseIcon className="h-3.5 w-3.5" />
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary-50 text-primary-600">
+                    <BriefcaseIcon className="h-3 w-3" />
                   </span>
                   <span className="min-w-0 flex-1 truncate text-xs font-medium text-ink-900">
                     {item.internshipTitle}
@@ -87,8 +87,8 @@ export function StudentHero() {
           </Card>
 
           {/* Profile completion -- REAL data, same metric shown in the dashboard content below */}
-          <Card className="absolute -bottom-3 right-4 z-20 hidden items-center gap-3 p-3 shadow-md sm:flex lg:right-8">
-            <MatchRing value={completion.percent} size={44} />
+          <Card className="absolute -bottom-3 right-2 z-20 hidden items-center gap-3 p-3 shadow-md sm:flex lg:right-2">
+            <MatchRing value={completion.percent} size={40} />
             <div>
               <p className="text-xs font-semibold text-ink-900">Profile</p>
               <p className="text-[11px] text-ink-600">Completeness</p>
