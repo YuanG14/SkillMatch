@@ -40,17 +40,17 @@ export function StudentHero() {
         </Link>
       }
       illustration={
-        <div className="relative mx-auto flex w-full max-w-xs items-center justify-center py-6 lg:max-w-sm lg:py-2">
+        <div className="relative mx-auto flex w-full max-w-sm items-center justify-center py-6 lg:max-w-lg lg:py-4">
           {/* Soft background shape ties the illustration into the blue/white palette */}
           <div
             aria-hidden="true"
-            className="absolute inset-8 rounded-[2.5rem] bg-primary-100/70 blur-2xl"
+            className="absolute inset-6 rounded-[2.5rem] bg-primary-100/70 blur-2xl lg:inset-4"
           />
 
           <img
             src={heroIllustration}
             alt="Student intern reviewing recommended internships on a tablet"
-            className="relative z-10 h-auto w-48 rounded-2xl object-cover shadow-lg sm:w-56 lg:w-64"
+            className="relative z-10 h-auto w-64 rounded-2xl object-cover shadow-lg sm:w-80 lg:w-full"
           />
 
           {/* Top match -- mock: matching isn't built yet, shown for layout only */}
@@ -60,7 +60,9 @@ export function StudentHero() {
               <p className="text-xs font-semibold leading-tight text-ink-900">
                 {MOCK_TOP_MATCH.internshipTitle}
               </p>
-              <p className="mt-0.5 text-[11px] text-ink-600">{MOCK_TOP_MATCH.companyName}</p>
+              <p className="mt-0.5 text-[11px] text-ink-600">
+                {MOCK_TOP_MATCH.companyName}
+              </p>
             </div>
           </Card>
 

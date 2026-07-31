@@ -182,3 +182,29 @@ export function XIcon(props: IconProps) {
     </svg>
   )
 }
+
+export function TrendingUpIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path d="m3 17 6-6 4 4 8-8" />
+      <path d="M15 7h6v6" />
+    </svg>
+  )
+}
+
+export function BookmarkIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path d="M6 4h12a1 1 0 0 1 1 1v15l-7-4.5L5 20V5a1 1 0 0 1 1-1Z" />
+    </svg>
+  )
+}
+
+export function MapPinIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21Z" />
+      <circle cx="12" cy="9.5" r="2.5" />
+    </svg>
+  )
+}
