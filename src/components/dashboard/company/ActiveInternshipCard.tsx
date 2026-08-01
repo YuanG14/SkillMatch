@@ -15,9 +15,12 @@ export function ActiveInternshipCard({ internship }: ActiveInternshipCardProps) 
   const { title, applicantCount, avgMatchPercent, status } = internship
 
   return (
-    <Card interactive className="flex items-center gap-4 p-4">
+    <Card
+      interactive
+      className="flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:gap-4"
+    >
       <div className="min-w-0 flex-1">
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <p className="font-display truncate text-sm font-semibold text-ink-900">
             {title}
           </p>
@@ -35,7 +38,7 @@ export function ActiveInternshipCard({ internship }: ActiveInternshipCardProps) 
         </div>
       </div>
 
-      <Button size="sm" variant="outline" className="shrink-0">
+      <Button size="sm" variant="outline" className="w-full shrink-0 sm:w-auto">
         View Applicants
       </Button>
     </Card>
