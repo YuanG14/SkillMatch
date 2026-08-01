@@ -87,12 +87,12 @@ export function TopNav({ navItems }: TopNavProps) {
           ))}
         </nav>
 
-        <div className="ml-auto flex shrink-0 items-center gap-2 lg:ml-0 xl:gap-3">
+        <div className="ml-auto flex min-w-0 shrink items-center gap-2 lg:ml-0 lg:shrink-0 xl:gap-3">
           <button
             type="button"
             aria-label="Notifications"
             className={cn(
-              'relative rounded-full p-2 text-white/85 transition-colors duration-150 hover:bg-white/10 hover:text-white',
+              'relative shrink-0 rounded-full p-2 text-white/85 transition-colors duration-150 hover:bg-white/10 hover:text-white',
               ON_BRAND_FOCUS_RING,
             )}
           >
@@ -103,26 +103,26 @@ export function TopNav({ navItems }: TopNavProps) {
             />
           </button>
 
-          <div className="relative" ref={accountMenuRef}>
+          <div className="relative min-w-0 shrink" ref={accountMenuRef}>
             <button
               type="button"
               onClick={() => setIsAccountMenuOpen((open) => !open)}
               aria-haspopup="menu"
               aria-expanded={isAccountMenuOpen}
               className={cn(
-                'flex items-center gap-2.5 rounded-full py-1 pl-1 pr-2 transition-colors duration-150 hover:bg-white/10',
+                'flex w-full min-w-0 items-center gap-2.5 rounded-full py-1 pl-1 pr-2 transition-colors duration-150 hover:bg-white/10',
                 ON_BRAND_FOCUS_RING,
               )}
             >
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-sm font-semibold text-primary-700">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-sm font-semibold text-primary-700">
                 {initial}
               </span>
-              <span className="hidden flex-col items-start leading-tight sm:flex">
-                <span className="text-sm font-semibold text-white">{displayName}</span>
-                <span className="text-xs text-white/70">{roleLabel}</span>
+              <span className="hidden min-w-0 max-w-[9rem] flex-col items-start leading-tight sm:flex xl:max-w-[12rem]">
+                <span className="w-full truncate text-sm font-semibold text-white">{displayName}</span>
+                <span className="w-full truncate text-xs text-white/70">{roleLabel}</span>
               </span>
               <ChevronDownIcon
-                className={cn('hidden h-4 w-4 text-white/70 transition-transform duration-150 sm:block', isAccountMenuOpen && 'rotate-180')}
+                className={cn('hidden h-4 w-4 shrink-0 text-white/70 transition-transform duration-150 sm:block', isAccountMenuOpen && 'rotate-180')}
               />
             </button>
 
@@ -157,7 +157,7 @@ export function TopNav({ navItems }: TopNavProps) {
             aria-label={isMobileNavOpen ? 'Close navigation' : 'Open navigation'}
             aria-expanded={isMobileNavOpen}
             className={cn(
-              'rounded-full p-2 text-white/85 transition-colors duration-150 hover:bg-white/10 hover:text-white lg:hidden',
+              'shrink-0 rounded-full p-2 text-white/85 transition-colors duration-150 hover:bg-white/10 hover:text-white lg:hidden',
               ON_BRAND_FOCUS_RING,
             )}
           >

@@ -38,10 +38,15 @@
   --radius-xl: 1rem;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   font-family: var(--font-sans);
   background-color: var(--color-surface-muted);
   color: var(--color-ink-900);
+  overflow-x: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {
