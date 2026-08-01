@@ -7,6 +7,7 @@ import { MatchRing } from '@/components/ui/MatchRing'
 import { UsersIcon, CheckIcon } from '@/components/ui/icons'
 import { useAuth } from '@/features/auth/useAuth'
 import { useCompanyProfile } from '@/features/companyProfile/useCompanyProfile'
+import { cn } from '@/utils/cn'
 import { MOCK_TOP_CANDIDATE, MOCK_HERO_STATS } from '@/mock/companyDashboardData'
 
 const todaysDate = new Date().toLocaleDateString('en-US', {
@@ -66,7 +67,7 @@ export function CompanyHero({ canPostListing }: CompanyHeroProps) {
           />
 
           {/* Central candidate-match visual -- mock: real matching isn't built yet, shown for layout only */}
-          <Card className="relative z-10 flex w-64 flex-col gap-3 p-5 shadow-lg sm:w-72">
+          <Card className="relative z-10 flex w-64 flex-col gap-3 p-5 shadow-lg motion-safe:animate-[fade-in_0.4s_ease-out] sm:w-72">
             <p className="text-xs font-semibold uppercase tracking-wide text-ink-600">
               {MOCK_TOP_CANDIDATE.candidateName}
             </p>
@@ -97,11 +98,13 @@ export function CompanyHero({ canPostListing }: CompanyHeroProps) {
             return (
               <Card
                 key={stat.id}
-                className={
+                className={cn(
+                  'z-20 hidden w-36 flex-col gap-2 p-3 shadow-md transition-transform duration-200 ease-out hover:-translate-y-0.5 motion-safe:animate-[fade-in-up_0.5s_ease-out_backwards] sm:flex',
                   index === 0
-                    ? 'absolute -left-2 top-2 z-20 hidden w-36 flex-col gap-2 p-3 shadow-md sm:flex lg:-left-6'
-                    : 'absolute -bottom-3 right-2 z-20 hidden w-36 flex-col gap-2 p-3 shadow-md sm:flex lg:right-2'
-                }
+                    ? 'absolute -left-2 top-2 lg:-left-6'
+                    : 'absolute -bottom-3 right-2 lg:right-2',
+                )}
+                style={{ animationDelay: index === 0 ? '0.08s' : '0.16s' }}
               >
                 <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary-50 text-primary-600">
                   <Icon className="h-4 w-4" />

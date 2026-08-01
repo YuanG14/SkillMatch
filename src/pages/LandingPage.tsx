@@ -161,7 +161,7 @@ export function LandingPage() {
           </div>
           <Link
             to={APP_ROUTES.howItWorks}
-            className="mt-8 inline-flex items-center gap-1.5 text-sm font-medium text-primary-600 hover:text-primary-700"
+            className="mt-8 inline-flex items-center gap-1.5 text-sm font-medium text-primary-600 transition-colors hover:text-primary-700"
           >
             See How It Works
             <ArrowRightIcon width={15} height={15} />
@@ -190,7 +190,7 @@ export function LandingPage() {
                 </p>
                 <Link
                   to={APP_ROUTES.forStudents}
-                  className="inline-flex items-center gap-1.5 text-sm font-medium text-primary-600 hover:text-primary-700"
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-primary-600 transition-colors hover:text-primary-700"
                 >
                   Explore For Students
                   <ArrowRightIcon width={15} height={15} />
@@ -208,7 +208,7 @@ export function LandingPage() {
                 </p>
                 <Link
                   to={APP_ROUTES.forCompanies}
-                  className="inline-flex items-center gap-1.5 text-sm font-medium text-primary-600 hover:text-primary-700"
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-primary-600 transition-colors hover:text-primary-700"
                 >
                   Explore For Companies
                   <ArrowRightIcon width={15} height={15} />

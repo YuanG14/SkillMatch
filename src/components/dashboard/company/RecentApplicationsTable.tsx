@@ -83,7 +83,7 @@ export function RecentApplicationsTable({ applications }: RecentApplicationsTabl
               <button
                 type="button"
                 className={cn(
-                  'rounded text-sm font-medium text-primary-600 hover:text-primary-700',
+                  'rounded text-sm font-medium text-primary-600 transition-colors hover:text-primary-700',
                   FOCUS_RING,
                 )}
               >

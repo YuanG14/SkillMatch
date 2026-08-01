@@ -29,7 +29,7 @@ function SidebarNav({ items, onNavigate }: { items: NavItem[]; onNavigate?: () =
           onClick={onNavigate}
           className={({ isActive }) =>
             cn(
-              'flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium transition-colors',
+              'group relative flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium transition-colors duration-150',
               FOCUS_RING,
               isActive
                 ? 'bg-primary-50 text-primary-700'
@@ -37,8 +37,19 @@ function SidebarNav({ items, onNavigate }: { items: NavItem[]; onNavigate?: () =
             )
           }
         >
-          <item.icon className="h-[18px] w-[18px] shrink-0" />
-          {item.label}
+          {({ isActive }) => (
+            <>
+              <span
+                aria-hidden="true"
+                className={cn(
+                  'absolute left-0 top-1/2 h-4 w-0.5 -translate-y-1/2 rounded-full bg-primary-600 transition-opacity duration-150',
+                  isActive ? 'opacity-100' : 'opacity-0',
+                )}
+              />
+              <item.icon className="h-[18px] w-[18px] shrink-0" />
+              {item.label}
+            </>
+          )}
         </NavLink>
       ))}
     </nav>

@@ -5,6 +5,11 @@ import { StudentHero } from '@/components/dashboard/student/StudentHero'
 import { DashboardSection } from '@/components/dashboard/DashboardSection'
 import { SectionLink } from '@/components/dashboard/SectionLink'
 import { StatCard } from '@/components/dashboard/StatCard'
+import {
+  StatCardSkeleton,
+  ListRowSkeleton,
+  TableSkeleton,
+} from '@/components/dashboard/DashboardSkeletons'
 import { InternshipRecommendationCard } from '@/components/dashboard/student/InternshipRecommendationCard'
 import { RecentApplicationsTable } from '@/components/dashboard/student/RecentApplicationsTable'
 import { ProfileCompletionCard } from '@/components/dashboard/student/ProfileCompletionCard'
@@ -26,26 +31,36 @@ export function StudentDashboardPage() {
       <StudentHero />
 
       <div className="grid gap-5 sm:grid-cols-3">
-        <StatCard
-          label="Total Applications"
-          value={String(MOCK_DASHBOARD_STATS.totalApplications)}
-          supportingText={MOCK_DASHBOARD_STATS.totalApplicationsTrend}
-          icon={FileTextIcon}
-          trend="up"
-        />
-        <StatCard
-          label="Interviews"
-          value={String(MOCK_DASHBOARD_STATS.interviews)}
-          supportingText={MOCK_DASHBOARD_STATS.interviewsTrend}
-          icon={UsersIcon}
-          trend="up"
-        />
-        <StatCard
-          label="Average Match Score"
-          value={`${MOCK_DASHBOARD_STATS.averageMatchScore}%`}
-          supportingText={MOCK_DASHBOARD_STATS.averageMatchScoreTrend}
-          icon={ChartIcon}
-        />
+        {isLoading ? (
+          <>
+            <StatCardSkeleton />
+            <StatCardSkeleton />
+            <StatCardSkeleton />
+          </>
+        ) : (
+          <>
+            <StatCard
+              label="Total Applications"
+              value={String(MOCK_DASHBOARD_STATS.totalApplications)}
+              supportingText={MOCK_DASHBOARD_STATS.totalApplicationsTrend}
+              icon={FileTextIcon}
+              trend="up"
+            />
+            <StatCard
+              label="Interviews"
+              value={String(MOCK_DASHBOARD_STATS.interviews)}
+              supportingText={MOCK_DASHBOARD_STATS.interviewsTrend}
+              icon={UsersIcon}
+              trend="up"
+            />
+            <StatCard
+              label="Average Match Score"
+              value={`${MOCK_DASHBOARD_STATS.averageMatchScore}%`}
+              supportingText={MOCK_DASHBOARD_STATS.averageMatchScoreTrend}
+              icon={ChartIcon}
+            />
+          </>
+        )}
       </div>
 
       <ProfileCompletionCard completion={completion} isLoading={isLoading} />
@@ -57,7 +72,12 @@ export function StudentDashboardPage() {
           actions={<SectionLink to="/student/internships">View all</SectionLink>}
           className="lg:col-span-3"
         >
-          {MOCK_RECOMMENDED_INTERNSHIPS.length > 0 ? (
+          {isLoading ? (
+            <div className="flex flex-col gap-4">
+              <ListRowSkeleton />
+              <ListRowSkeleton />
+            </div>
+          ) : MOCK_RECOMMENDED_INTERNSHIPS.length > 0 ? (
             <div className="flex flex-col gap-4">
               {MOCK_RECOMMENDED_INTERNSHIPS.map((internship) => (
                 <InternshipRecommendationCard
@@ -85,7 +105,11 @@ export function StudentDashboardPage() {
           description="Track the status of internships you've applied to."
           className="lg:col-span-2"
         >
-          <RecentApplicationsTable applications={MOCK_APPLICATIONS} />
+          {isLoading ? (
+            <TableSkeleton rows={3} columns={4} />
+          ) : (
+            <RecentApplicationsTable applications={MOCK_APPLICATIONS} />
+          )}
         </DashboardSection>
       </div>
     </div>

@@ -215,7 +215,7 @@ export function CompanyProfilePage() {
               >
                 Back to dashboard
               </Button>
-              <Button type="submit" disabled={isSaving}>
+              <Button type="submit" isLoading={isSaving}>
                 {isSaving ? 'Saving…' : 'Save profile'}
               </Button>
             </div>

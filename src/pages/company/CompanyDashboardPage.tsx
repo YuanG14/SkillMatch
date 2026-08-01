@@ -6,6 +6,11 @@ import { CompanyProfileStatusCard } from '@/components/dashboard/company/Company
 import { DashboardSection } from '@/components/dashboard/DashboardSection'
 import { SectionLink } from '@/components/dashboard/SectionLink'
 import { StatCard } from '@/components/dashboard/StatCard'
+import {
+  StatCardSkeleton,
+  ListRowSkeleton,
+  TableSkeleton,
+} from '@/components/dashboard/DashboardSkeletons'
 import { RecentApplicantCard } from '@/components/dashboard/company/RecentApplicantCard'
 import { ActiveInternshipCard } from '@/components/dashboard/company/ActiveInternshipCard'
 import { RecentApplicationsTable } from '@/components/dashboard/company/RecentApplicationsTable'
@@ -31,34 +36,45 @@ export function CompanyDashboardPage() {
       <CompanyProfileStatusCard profile={profile} isLoading={isLoading} />
 
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        <StatCard
-          label="Active Internships"
-          value={String(MOCK_COMPANY_DASHBOARD_STATS.activeInternships)}
-          supportingText={MOCK_COMPANY_DASHBOARD_STATS.activeInternshipsTrend}
-          icon={BriefcaseIcon}
-          trend="up"
-        />
-        <StatCard
-          label="Total Applicants"
-          value={String(MOCK_COMPANY_DASHBOARD_STATS.totalApplicants)}
-          supportingText={MOCK_COMPANY_DASHBOARD_STATS.totalApplicantsTrend}
-          icon={UsersIcon}
-          trend="up"
-        />
-        <StatCard
-          label="Shortlisted"
-          value={String(MOCK_COMPANY_DASHBOARD_STATS.shortlisted)}
-          supportingText={MOCK_COMPANY_DASHBOARD_STATS.shortlistedTrend}
-          icon={CheckIcon}
-          trend="up"
-        />
-        <StatCard
-          label="Interviews"
-          value={String(MOCK_COMPANY_DASHBOARD_STATS.interviews)}
-          supportingText={MOCK_COMPANY_DASHBOARD_STATS.interviewsTrend}
-          icon={ChartIcon}
-          trend="up"
-        />
+        {isLoading ? (
+          <>
+            <StatCardSkeleton />
+            <StatCardSkeleton />
+            <StatCardSkeleton />
+            <StatCardSkeleton />
+          </>
+        ) : (
+          <>
+            <StatCard
+              label="Active Internships"
+              value={String(MOCK_COMPANY_DASHBOARD_STATS.activeInternships)}
+              supportingText={MOCK_COMPANY_DASHBOARD_STATS.activeInternshipsTrend}
+              icon={BriefcaseIcon}
+              trend="up"
+            />
+            <StatCard
+              label="Total Applicants"
+              value={String(MOCK_COMPANY_DASHBOARD_STATS.totalApplicants)}
+              supportingText={MOCK_COMPANY_DASHBOARD_STATS.totalApplicantsTrend}
+              icon={UsersIcon}
+              trend="up"
+            />
+            <StatCard
+              label="Shortlisted"
+              value={String(MOCK_COMPANY_DASHBOARD_STATS.shortlisted)}
+              supportingText={MOCK_COMPANY_DASHBOARD_STATS.shortlistedTrend}
+              icon={CheckIcon}
+              trend="up"
+            />
+            <StatCard
+              label="Interviews"
+              value={String(MOCK_COMPANY_DASHBOARD_STATS.interviews)}
+              supportingText={MOCK_COMPANY_DASHBOARD_STATS.interviewsTrend}
+              icon={ChartIcon}
+              trend="up"
+            />
+          </>
+        )}
       </div>
 
       <div className="grid gap-6 lg:grid-cols-5 lg:items-start">
@@ -68,7 +84,12 @@ export function CompanyDashboardPage() {
           actions={<SectionLink to="/company/candidates">View all</SectionLink>}
           className="lg:col-span-3"
         >
-          {MOCK_APPLICANTS.length > 0 ? (
+          {isLoading ? (
+            <div className="flex flex-col gap-4">
+              <ListRowSkeleton />
+              <ListRowSkeleton />
+            </div>
+          ) : MOCK_APPLICANTS.length > 0 ? (
             <div className="flex flex-col gap-4">
               {MOCK_APPLICANTS.map((applicant) => (
                 <RecentApplicantCard key={applicant.id} applicant={applicant} />
@@ -94,7 +115,12 @@ export function CompanyDashboardPage() {
           actions={<SectionLink to="/company/listings">View all</SectionLink>}
           className="lg:col-span-2"
         >
-          {MOCK_ACTIVE_INTERNSHIPS.length > 0 ? (
+          {isLoading ? (
+            <div className="flex flex-col gap-4">
+              <ListRowSkeleton />
+              <ListRowSkeleton />
+            </div>
+          ) : MOCK_ACTIVE_INTERNSHIPS.length > 0 ? (
             <div className="flex flex-col gap-4">
               {MOCK_ACTIVE_INTERNSHIPS.map((internship) => (
                 <ActiveInternshipCard key={internship.id} internship={internship} />
@@ -119,7 +145,11 @@ export function CompanyDashboardPage() {
         title="Recent Applications"
         description="Track every candidate's status across your open listings."
       >
-        <RecentApplicationsTable applications={MOCK_COMPANY_APPLICATIONS} />
+        {isLoading ? (
+          <TableSkeleton rows={4} columns={6} />
+        ) : (
+          <RecentApplicationsTable applications={MOCK_COMPANY_APPLICATIONS} />
+        )}
       </DashboardSection>
 
       <DashboardSection

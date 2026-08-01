@@ -30,7 +30,7 @@ export function DashboardLayout({ navItems, roleLabel }: DashboardLayoutProps) {
             for the vertical rhythm between their own sections (hero, KPI
             row, two-column content) using the same gap scale.
           */}
-          <div className="mx-auto flex w-full max-w-[1440px] flex-col px-4 py-6 sm:px-6 sm:py-8 lg:px-10 lg:py-10">
+          <div className="mx-auto flex w-full max-w-[1440px] flex-col px-4 py-6 motion-safe:animate-[fade-in_0.25s_ease-out] sm:px-6 sm:py-8 lg:px-10 lg:py-10">
             <Outlet />
           </div>
         </main>

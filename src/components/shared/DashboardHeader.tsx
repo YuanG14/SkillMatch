@@ -46,7 +46,7 @@ export function DashboardHeader({ onMenuClick }: DashboardHeaderProps) {
         onClick={onMenuClick}
         aria-label="Open navigation"
         className={cn(
-          'shrink-0 rounded-md p-2 text-ink-600 hover:bg-surface-muted hover:text-ink-900 md:hidden',
+          'shrink-0 rounded-md p-2 text-ink-600 transition-colors duration-150 hover:bg-surface-muted hover:text-ink-900 md:hidden',
           FOCUS_RING,
         )}
       >
@@ -68,7 +68,7 @@ export function DashboardHeader({ onMenuClick }: DashboardHeaderProps) {
           type="button"
           aria-label="Notifications"
           className={cn(
-            'rounded-md p-2 text-ink-600 hover:bg-surface-muted hover:text-ink-900',
+            'rounded-md p-2 text-ink-600 transition-colors duration-150 hover:bg-surface-muted hover:text-ink-900',
             FOCUS_RING,
           )}
         >
@@ -82,7 +82,7 @@ export function DashboardHeader({ onMenuClick }: DashboardHeaderProps) {
             aria-haspopup="menu"
             aria-expanded={isMenuOpen}
             className={cn(
-              'flex items-center gap-2 rounded-md p-1 hover:bg-surface-muted',
+              'flex items-center gap-2 rounded-md p-1 transition-colors duration-150 hover:bg-surface-muted',
               FOCUS_RING,
             )}
           >
@@ -97,7 +97,7 @@ export function DashboardHeader({ onMenuClick }: DashboardHeaderProps) {
           {isMenuOpen && (
             <div
               role="menu"
-              className="absolute right-0 top-full z-10 mt-2 w-52 rounded-md border border-border bg-surface py-1 shadow-lg"
+              className="absolute right-0 top-full z-10 mt-2 w-52 origin-top-right rounded-md border border-border bg-surface py-1 shadow-lg motion-safe:animate-[scale-in_0.15s_ease-out]"
             >
               <div className="truncate border-b border-border px-3 py-2 text-xs text-ink-400">
                 {profile?.email}
@@ -107,7 +107,7 @@ export function DashboardHeader({ onMenuClick }: DashboardHeaderProps) {
                 role="menuitem"
                 onClick={() => void handleSignOut()}
                 className={cn(
-                  'flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-ink-700 hover:bg-surface-muted',
+                  'flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-ink-700 transition-colors duration-150 hover:bg-surface-muted',
                   FOCUS_RING,
                 )}
               >

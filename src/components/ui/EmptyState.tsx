@@ -15,7 +15,7 @@ export function EmptyState({
   icon: Icon = CircleDashedIcon,
 }: EmptyStateProps) {
   return (
-    <div className="flex flex-col items-center gap-3 rounded-xl border border-dashed border-border-strong bg-surface-muted px-6 py-12 text-center">
+    <div className="flex flex-col items-center gap-3 rounded-xl border border-dashed border-border-strong bg-surface-muted px-6 py-12 text-center motion-safe:animate-[fade-in_0.3s_ease-out]">
       <span
         aria-hidden="true"
         className="flex h-11 w-11 items-center justify-center rounded-full bg-primary-50 text-primary-600"

@@ -50,11 +50,13 @@ export function StudentHero() {
           <img
             src={heroIllustration}
             alt="Student intern reviewing recommended internships on a tablet"
-            className="relative z-10 h-auto w-48 rounded-2xl object-cover shadow-lg sm:w-56 lg:w-64"
+            className="relative z-10 h-auto w-48 rounded-2xl object-cover shadow-lg motion-safe:animate-[fade-in_0.4s_ease-out] sm:w-56 lg:w-64"
           />
 
           {/* Top match -- mock: matching isn't built yet, shown for layout only */}
-          <Card className="absolute -left-2 top-2 z-20 hidden w-36 flex-col items-center gap-2 p-3 shadow-md sm:flex lg:-left-6">
+          <Card
+            className="absolute -left-2 top-2 z-20 hidden w-36 flex-col items-center gap-2 p-3 shadow-md transition-transform duration-200 ease-out hover:-translate-y-0.5 motion-safe:animate-[fade-in-up_0.5s_ease-out] sm:flex lg:-left-6"
+          >
             <MatchRing value={MOCK_TOP_MATCH.matchPercent} size={44} />
             <div className="text-center">
               <p className="text-xs font-semibold leading-tight text-ink-900">
@@ -67,7 +69,9 @@ export function StudentHero() {
           </Card>
 
           {/* Recommended preview -- mock: real recommendations aren't built yet */}
-          <Card className="absolute -right-2 top-0 z-20 hidden w-44 p-3 shadow-md sm:block lg:-right-6">
+          <Card
+            className="absolute -right-2 top-0 z-20 hidden w-44 p-3 shadow-md transition-transform duration-200 ease-out hover:-translate-y-0.5 motion-safe:animate-[fade-in-up_0.5s_ease-out_0.08s_backwards] sm:block lg:-right-6"
+          >
             <p className="mb-2 text-xs font-semibold text-ink-900">Recommended for you</p>
             <ul className="flex flex-col gap-2">
               {recommendedPreview.map((item) => (
@@ -87,7 +91,9 @@ export function StudentHero() {
           </Card>
 
           {/* Profile completion -- REAL data, same metric shown in the dashboard content below */}
-          <Card className="absolute -bottom-3 right-2 z-20 hidden items-center gap-3 p-3 shadow-md sm:flex lg:right-2">
+          <Card
+            className="absolute -bottom-3 right-2 z-20 hidden items-center gap-3 p-3 shadow-md transition-transform duration-200 ease-out hover:-translate-y-0.5 motion-safe:animate-[fade-in-up_0.5s_ease-out_0.16s_backwards] sm:flex lg:right-2"
+          >
             <MatchRing value={completion.percent} size={40} />
             <div>
               <p className="text-xs font-semibold text-ink-900">Profile</p>

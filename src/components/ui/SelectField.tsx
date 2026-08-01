@@ -29,6 +29,7 @@ export function SelectField({
         aria-describedby={hintId}
         className={cn(
           'h-10 rounded-md border border-border-strong bg-surface px-3 text-sm text-ink-900',
+          'transition-[border-color,box-shadow] duration-150',
           'focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-primary-600',
           className,
         )}

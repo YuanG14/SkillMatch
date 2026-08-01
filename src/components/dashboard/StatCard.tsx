@@ -26,10 +26,15 @@ export function StatCard({
   className,
 }: StatCardProps) {
   return (
-    <Card className={cn('p-5', className)}>
+    <Card
+      className={cn(
+        'p-5 transition-[box-shadow,border-color] duration-200 ease-out hover:border-border-strong hover:shadow-[0_4px_16px_rgba(16,24,40,0.06)]',
+        className,
+      )}
+    >
       <div className="flex items-start justify-between gap-3">
         <p className="text-sm font-medium text-ink-600">{label}</p>
-        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-600">
+        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-600 transition-colors duration-200">
           <Icon className="h-4.5 w-4.5" />
         </span>
       </div>
