@@ -1,87 +1,141 @@
 import { Link } from 'react-router-dom'
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from '@/components/ui/Card'
 import { EmptyState } from '@/components/ui/EmptyState'
 import { Button } from '@/components/ui/Button'
-import { Badge } from '@/components/ui/Badge'
-import { Spinner } from '@/components/ui/Spinner'
-import { DashboardPageHeader } from '@/components/dashboard/DashboardPageHeader'
+import { CompanyHero } from '@/components/dashboard/company/CompanyHero'
+import { CompanyProfileStatusCard } from '@/components/dashboard/company/CompanyProfileStatusCard'
+import { DashboardSection } from '@/components/dashboard/DashboardSection'
+import { StatCard } from '@/components/dashboard/StatCard'
+import { RecentApplicantCard } from '@/components/dashboard/company/RecentApplicantCard'
+import { ActiveInternshipCard } from '@/components/dashboard/company/ActiveInternshipCard'
+import { RecentApplicationsTable } from '@/components/dashboard/company/RecentApplicationsTable'
+import { RecruitmentOverview } from '@/components/dashboard/company/RecruitmentOverview'
+import { BriefcaseIcon, UsersIcon, CheckIcon, ChartIcon } from '@/components/ui/icons'
 import { useCompanyProfile } from '@/features/companyProfile/useCompanyProfile'
-import { VERIFICATION_STATUS_DISPLAY } from '@/utils/verificationStatus'
+import {
+  MOCK_APPLICANTS,
+  MOCK_ACTIVE_INTERNSHIPS,
+  MOCK_COMPANY_APPLICATIONS,
+  MOCK_COMPANY_DASHBOARD_STATS,
+  MOCK_RECRUITMENT_OVERVIEW,
+} from '@/mock/companyDashboardData'
 
 export function CompanyDashboardPage() {
   const { profile, isLoading } = useCompanyProfile()
-  const statusDisplay =
-    VERIFICATION_STATUS_DISPLAY[profile?.verificationStatus ?? 'pending']
-  const hasCompanyDetails = Boolean(profile?.companyName)
+  const canPostListing = profile?.verificationStatus === 'verified'
 
   return (
     <div className="flex flex-col gap-8">
-      <DashboardPageHeader
-        title="Dashboard"
-        description="Here's where things stand with your company account."
-        actions={
-          <Button size="sm" disabled={statusDisplay.tone !== 'success'}>
-            Post a listing
-          </Button>
-        }
-      />
+      <CompanyHero canPostListing={canPostListing} />
 
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        <Card>
-          <CardHeader>
-            <CardTitle>Company profile</CardTitle>
-            <CardDescription>
-              {hasCompanyDetails
-                ? profile?.companyName
-                : 'Add your company details to get started.'}
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="flex flex-col items-start gap-4">
-            {isLoading ? (
-              <Spinner label="Loading…" />
-            ) : (
-              <>
-                <Badge tone={statusDisplay.tone}>{statusDisplay.label}</Badge>
-                <Link to="/company/profile">
-                  <Button size="sm" variant={hasCompanyDetails ? 'outline' : 'primary'}>
-                    {hasCompanyDetails ? 'Edit profile' : 'Complete your profile'}
-                  </Button>
-                </Link>
-              </>
-            )}
-          </CardContent>
-        </Card>
+      <CompanyProfileStatusCard profile={profile} isLoading={isLoading} />
 
-        <Card className="sm:col-span-2 lg:col-span-2">
-          <CardHeader>
-            <CardTitle>Your listings</CardTitle>
-            <CardDescription>
-              Internship postings and their candidate pipelines.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <StatCard
+          label="Active Internships"
+          value={String(MOCK_COMPANY_DASHBOARD_STATS.activeInternships)}
+          supportingText={MOCK_COMPANY_DASHBOARD_STATS.activeInternshipsTrend}
+          icon={BriefcaseIcon}
+          trend="up"
+        />
+        <StatCard
+          label="Total Applicants"
+          value={String(MOCK_COMPANY_DASHBOARD_STATS.totalApplicants)}
+          supportingText={MOCK_COMPANY_DASHBOARD_STATS.totalApplicantsTrend}
+          icon={UsersIcon}
+          trend="up"
+        />
+        <StatCard
+          label="Shortlisted"
+          value={String(MOCK_COMPANY_DASHBOARD_STATS.shortlisted)}
+          supportingText={MOCK_COMPANY_DASHBOARD_STATS.shortlistedTrend}
+          icon={CheckIcon}
+          trend="up"
+        />
+        <StatCard
+          label="Interviews"
+          value={String(MOCK_COMPANY_DASHBOARD_STATS.interviews)}
+          supportingText={MOCK_COMPANY_DASHBOARD_STATS.interviewsTrend}
+          icon={ChartIcon}
+          trend="up"
+        />
+      </div>
+
+      <div className="grid gap-6 lg:grid-cols-5 lg:items-start">
+        <DashboardSection
+          title="Recent Applicants"
+          description="Students who recently applied to your internships."
+          actions={
+            <Link
+              to="/company/candidates"
+              className="text-sm font-medium text-primary-600"
+            >
+              View all
+            </Link>
+          }
+          className="lg:col-span-3"
+        >
+          {MOCK_APPLICANTS.length > 0 ? (
+            <div className="flex flex-col gap-4">
+              {MOCK_APPLICANTS.map((applicant) => (
+                <RecentApplicantCard key={applicant.id} applicant={applicant} />
+              ))}
+            </div>
+          ) : (
             <EmptyState
-              title="No listings yet"
-              description={
-                statusDisplay.tone === 'success'
-                  ? 'Post your first internship to start matching with students.'
-                  : 'Listings unlock once your company is verified.'
-              }
+              title="No applicants yet"
+              description="Applicants will appear here when students apply to your internships."
               action={
-                <Button size="sm" disabled={statusDisplay.tone !== 'success'}>
-                  Post a listing
+                <Link to="/company/listings">
+                  <Button size="sm">View Internships</Button>
+                </Link>
+              }
+            />
+          )}
+        </DashboardSection>
+
+        <DashboardSection
+          title="Active Internships"
+          description="Listings currently open for applications."
+          actions={
+            <Link to="/company/listings" className="text-sm font-medium text-primary-600">
+              View all
+            </Link>
+          }
+          className="lg:col-span-2"
+        >
+          {MOCK_ACTIVE_INTERNSHIPS.length > 0 ? (
+            <div className="flex flex-col gap-4">
+              {MOCK_ACTIVE_INTERNSHIPS.map((internship) => (
+                <ActiveInternshipCard key={internship.id} internship={internship} />
+              ))}
+            </div>
+          ) : (
+            <EmptyState
+              title="No internships posted yet"
+              description="Create your first internship opportunity to start receiving applications."
+              action={
+                <Button size="sm" disabled={!canPostListing}>
+                  Post an Internship
                 </Button>
               }
             />
-          </CardContent>
-        </Card>
+          )}
+        </DashboardSection>
       </div>
+
+      <DashboardSection
+        title="Recent Applications"
+        description="Track every candidate's status across your open listings."
+      >
+        <RecentApplicationsTable applications={MOCK_COMPANY_APPLICATIONS} />
+      </DashboardSection>
+
+      <DashboardSection
+        title="Recruitment Overview"
+        description="Your hiring pipeline at a glance."
+      >
+        <RecruitmentOverview overview={MOCK_RECRUITMENT_OVERVIEW} />
+      </DashboardSection>
     </div>
   )
 }
