@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import { SearchIcon, BellIcon, LogOutIcon } from '@/components/ui/icons'
 import { useAuth } from '@/features/auth/useAuth'
 import { APP_ROUTES } from '@/constants/routes'
+import { FOCUS_RING } from '@/utils/a11y'
+import { cn } from '@/utils/cn'
 
 export function DashboardHeader() {
   const { profile, signOut } = useAuth()
@@ -38,6 +40,7 @@ export function DashboardHeader() {
         <SearchIcon className="h-4 w-4 text-ink-400" />
         <input
           type="search"
+          aria-label="Search internships, companies"
           placeholder="Search internships, companies..."
           className="w-full bg-transparent text-sm text-ink-900 placeholder:text-ink-400 focus:outline-none"
         />
@@ -47,7 +50,10 @@ export function DashboardHeader() {
         <button
           type="button"
           aria-label="Notifications"
-          className="rounded-md p-2 text-ink-600 hover:bg-surface-muted hover:text-ink-900"
+          className={cn(
+            'rounded-md p-2 text-ink-600 hover:bg-surface-muted hover:text-ink-900',
+            FOCUS_RING,
+          )}
         >
           <BellIcon className="h-5 w-5" />
         </button>
@@ -58,7 +64,10 @@ export function DashboardHeader() {
             onClick={() => setIsMenuOpen((open) => !open)}
             aria-haspopup="menu"
             aria-expanded={isMenuOpen}
-            className="flex items-center gap-2 rounded-md p-1 hover:bg-surface-muted"
+            className={cn(
+              'flex items-center gap-2 rounded-md p-1 hover:bg-surface-muted',
+              FOCUS_RING,
+            )}
           >
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary-100 text-sm font-semibold text-primary-700">
               {initial}
@@ -80,7 +89,10 @@ export function DashboardHeader() {
                 type="button"
                 role="menuitem"
                 onClick={() => void handleSignOut()}
-                className="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-ink-700 hover:bg-surface-muted"
+                className={cn(
+                  'flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-ink-700 hover:bg-surface-muted',
+                  FOCUS_RING,
+                )}
               >
                 <LogOutIcon className="h-4 w-4" />
                 Log out

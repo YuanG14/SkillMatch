@@ -2,13 +2,10 @@ import { Card } from '@/components/ui/Card'
 import { Badge, type BadgeTone } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
 import { UsersIcon } from '@/components/ui/icons'
+import { LISTING_STATUS_TONE } from '@/utils/statusTone'
 import type { MockActiveInternship, InternshipStatus } from '@/mock/companyDashboardData'
 
-const STATUS_TONE: Record<InternshipStatus, BadgeTone> = {
-  Active: 'success',
-  Paused: 'warning',
-  Closed: 'neutral',
-}
+const STATUS_TONE: Record<InternshipStatus, BadgeTone> = LISTING_STATUS_TONE
 
 interface ActiveInternshipCardProps {
   internship: MockActiveInternship
@@ -18,7 +15,7 @@ export function ActiveInternshipCard({ internship }: ActiveInternshipCardProps) 
   const { title, applicantCount, avgMatchPercent, status } = internship
 
   return (
-    <Card className="flex items-center gap-4 p-4">
+    <Card interactive className="flex items-center gap-4 p-4">
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2">
           <p className="font-display truncate text-sm font-semibold text-ink-900">

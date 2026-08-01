@@ -12,7 +12,7 @@ export function RecentApplicantCard({ applicant }: RecentApplicantCardProps) {
   const { candidateName, internshipTitle, matchPercent, skills } = applicant
 
   return (
-    <Card className="flex items-center gap-4 p-4">
+    <Card interactive className="flex items-center gap-4 p-4">
       <MatchRing value={matchPercent} size={56} />
 
       <div className="min-w-0 flex-1">

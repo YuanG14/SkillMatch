@@ -3,6 +3,7 @@ import { Badge } from '@/components/ui/Badge'
 import { MatchRing } from '@/components/ui/MatchRing'
 import { BookmarkIcon, MapPinIcon } from '@/components/ui/icons'
 import { cn } from '@/utils/cn'
+import { FOCUS_RING } from '@/utils/a11y'
 import type { MockRecommendedInternship } from '@/mock/studentDashboardData'
 
 interface InternshipRecommendationCardProps {
@@ -18,7 +19,7 @@ export function InternshipRecommendationCard({
     internship
 
   return (
-    <Card className="flex items-center gap-4 p-4">
+    <Card interactive className="flex items-center gap-4 p-4">
       <MatchRing value={matchPercent} size={56} />
 
       <div className="min-w-0 flex-1">
@@ -43,6 +44,7 @@ export function InternshipRecommendationCard({
         aria-label={saved ? 'Remove from saved internships' : 'Save internship'}
         className={cn(
           'flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border transition-colors',
+          FOCUS_RING,
           saved
             ? 'border-primary-100 bg-primary-50 text-primary-600'
             : 'border-border text-ink-600 hover:bg-surface-muted',

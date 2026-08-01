@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/Button'
 import { CompanyHero } from '@/components/dashboard/company/CompanyHero'
 import { CompanyProfileStatusCard } from '@/components/dashboard/company/CompanyProfileStatusCard'
 import { DashboardSection } from '@/components/dashboard/DashboardSection'
+import { SectionLink } from '@/components/dashboard/SectionLink'
 import { StatCard } from '@/components/dashboard/StatCard'
 import { RecentApplicantCard } from '@/components/dashboard/company/RecentApplicantCard'
 import { ActiveInternshipCard } from '@/components/dashboard/company/ActiveInternshipCard'
@@ -64,14 +65,7 @@ export function CompanyDashboardPage() {
         <DashboardSection
           title="Recent Applicants"
           description="Students who recently applied to your internships."
-          actions={
-            <Link
-              to="/company/candidates"
-              className="text-sm font-medium text-primary-600"
-            >
-              View all
-            </Link>
-          }
+          actions={<SectionLink to="/company/candidates">View all</SectionLink>}
           className="lg:col-span-3"
         >
           {MOCK_APPLICANTS.length > 0 ? (
@@ -82,6 +76,7 @@ export function CompanyDashboardPage() {
             </div>
           ) : (
             <EmptyState
+              icon={UsersIcon}
               title="No applicants yet"
               description="Applicants will appear here when students apply to your internships."
               action={
@@ -96,11 +91,7 @@ export function CompanyDashboardPage() {
         <DashboardSection
           title="Active Internships"
           description="Listings currently open for applications."
-          actions={
-            <Link to="/company/listings" className="text-sm font-medium text-primary-600">
-              View all
-            </Link>
-          }
+          actions={<SectionLink to="/company/listings">View all</SectionLink>}
           className="lg:col-span-2"
         >
           {MOCK_ACTIVE_INTERNSHIPS.length > 0 ? (
@@ -111,6 +102,7 @@ export function CompanyDashboardPage() {
             </div>
           ) : (
             <EmptyState
+              icon={BriefcaseIcon}
               title="No internships posted yet"
               description="Create your first internship opportunity to start receiving applications."
               action={

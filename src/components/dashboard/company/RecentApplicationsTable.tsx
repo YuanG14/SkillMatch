@@ -10,16 +10,20 @@ import {
 import { Badge, type BadgeTone } from '@/components/ui/Badge'
 import { EmptyState } from '@/components/ui/EmptyState'
 import { Button } from '@/components/ui/Button'
+import { UsersIcon } from '@/components/ui/icons'
+import { APPLICATION_STATUS_TONE } from '@/utils/statusTone'
+import { FOCUS_RING } from '@/utils/a11y'
+import { cn } from '@/utils/cn'
 import type {
   MockCompanyApplication,
   ApplicationStatus,
 } from '@/mock/companyDashboardData'
 
 const STATUS_TONE: Record<ApplicationStatus, BadgeTone> = {
-  'Under Review': 'primary',
-  Shortlisted: 'success',
-  Interview: 'warning',
-  Rejected: 'danger',
+  'Under Review': APPLICATION_STATUS_TONE['Under Review'],
+  Shortlisted: APPLICATION_STATUS_TONE.Shortlisted,
+  Interview: APPLICATION_STATUS_TONE.Interview,
+  Rejected: APPLICATION_STATUS_TONE.Rejected,
 }
 
 function formatAppliedDate(isoDate: string) {
@@ -37,6 +41,7 @@ export function RecentApplicationsTable({ applications }: RecentApplicationsTabl
   if (applications.length === 0) {
     return (
       <EmptyState
+        icon={UsersIcon}
         title="No applicants yet"
         description="Applicants will appear here when students apply to your internships."
         action={
@@ -77,7 +82,10 @@ export function RecentApplicationsTable({ applications }: RecentApplicationsTabl
             <TableCell>
               <button
                 type="button"
-                className="text-sm font-medium text-primary-600 hover:text-primary-700"
+                className={cn(
+                  'rounded text-sm font-medium text-primary-600 hover:text-primary-700',
+                  FOCUS_RING,
+                )}
               >
                 View
               </button>

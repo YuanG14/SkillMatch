@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import { Logo } from '@/components/shared/Logo'
 import { cn } from '@/utils/cn'
+import { FOCUS_RING } from '@/utils/a11y'
 import type { NavItem } from '@/types/navigation'
 
 interface SidebarProps {
@@ -24,6 +25,7 @@ export function Sidebar({ items, roleLabel }: SidebarProps) {
             className={({ isActive }) =>
               cn(
                 'flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors',
+                FOCUS_RING,
                 isActive
                   ? 'bg-primary-50 text-primary-700'
                   : 'text-ink-600 hover:bg-surface-muted hover:text-ink-900',

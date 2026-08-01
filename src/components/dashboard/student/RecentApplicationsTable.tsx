@@ -10,14 +10,16 @@ import {
 import { Badge, type BadgeTone } from '@/components/ui/Badge'
 import { EmptyState } from '@/components/ui/EmptyState'
 import { Button } from '@/components/ui/Button'
+import { FileTextIcon } from '@/components/ui/icons'
+import { APPLICATION_STATUS_TONE } from '@/utils/statusTone'
 import type { MockApplication, ApplicationStatus } from '@/mock/studentDashboardData'
 
 const STATUS_TONE: Record<ApplicationStatus, BadgeTone> = {
-  Applied: 'neutral',
-  'Under Review': 'primary',
-  'Interview Scheduled': 'warning',
-  Accepted: 'success',
-  Rejected: 'danger',
+  Applied: APPLICATION_STATUS_TONE.Applied,
+  'Under Review': APPLICATION_STATUS_TONE['Under Review'],
+  'Interview Scheduled': APPLICATION_STATUS_TONE['Interview Scheduled'],
+  Accepted: APPLICATION_STATUS_TONE.Accepted,
+  Rejected: APPLICATION_STATUS_TONE.Rejected,
 }
 
 function formatAppliedDate(isoDate: string) {
@@ -36,6 +38,7 @@ export function RecentApplicationsTable({ applications }: RecentApplicationsTabl
   if (applications.length === 0) {
     return (
       <EmptyState
+        icon={FileTextIcon}
         title="No applications yet"
         description="Your internship applications will appear here once you apply."
         action={

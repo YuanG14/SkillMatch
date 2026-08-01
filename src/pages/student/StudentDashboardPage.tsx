@@ -3,11 +3,12 @@ import { EmptyState } from '@/components/ui/EmptyState'
 import { Button } from '@/components/ui/Button'
 import { StudentHero } from '@/components/dashboard/student/StudentHero'
 import { DashboardSection } from '@/components/dashboard/DashboardSection'
+import { SectionLink } from '@/components/dashboard/SectionLink'
 import { StatCard } from '@/components/dashboard/StatCard'
 import { InternshipRecommendationCard } from '@/components/dashboard/student/InternshipRecommendationCard'
 import { RecentApplicationsTable } from '@/components/dashboard/student/RecentApplicationsTable'
 import { ProfileCompletionCard } from '@/components/dashboard/student/ProfileCompletionCard'
-import { FileTextIcon, UsersIcon, ChartIcon } from '@/components/ui/icons'
+import { FileTextIcon, UsersIcon, ChartIcon, BriefcaseIcon } from '@/components/ui/icons'
 import { useStudentProfile } from '@/features/studentProfile/useStudentProfile'
 import { calculateProfileCompletion } from '@/utils/profileCompletion'
 import {
@@ -17,7 +18,7 @@ import {
 } from '@/mock/studentDashboardData'
 
 export function StudentDashboardPage() {
-  const { profile } = useStudentProfile()
+  const { profile, isLoading } = useStudentProfile()
   const completion = calculateProfileCompletion(profile)
 
   return (
@@ -47,20 +48,13 @@ export function StudentDashboardPage() {
         />
       </div>
 
-      <ProfileCompletionCard completion={completion} />
+      <ProfileCompletionCard completion={completion} isLoading={isLoading} />
 
       <div className="grid gap-6 lg:grid-cols-5 lg:items-start">
         <DashboardSection
           title="Recommended for You"
           description="Internships matched to your skills and goals."
-          actions={
-            <Link
-              to="/student/internships"
-              className="text-sm font-medium text-primary-600"
-            >
-              View all
-            </Link>
-          }
+          actions={<SectionLink to="/student/internships">View all</SectionLink>}
           className="lg:col-span-3"
         >
           {MOCK_RECOMMENDED_INTERNSHIPS.length > 0 ? (
@@ -74,6 +68,7 @@ export function StudentDashboardPage() {
             </div>
           ) : (
             <EmptyState
+              icon={BriefcaseIcon}
               title="No recommendations yet"
               description="Complete your profile to unlock personalized internship matches."
               action={

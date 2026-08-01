@@ -38,6 +38,7 @@ export function TableHeaderCell({
 }: ThHTMLAttributes<HTMLTableCellElement>) {
   return (
     <th
+      scope="col"
       className={cn(
         'px-4 py-3 text-xs font-semibold uppercase tracking-wide text-ink-600',
         className,
