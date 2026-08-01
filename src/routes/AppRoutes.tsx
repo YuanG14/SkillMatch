@@ -116,6 +116,18 @@ const router = createBrowserRouter([
             element: <ComingSoonPage title="Applications" />,
           },
           {
+            path: 'saved',
+            element: <ComingSoonPage title="Saved Internships" />,
+          },
+          {
+            path: 'skill-gap-analysis',
+            element: <ComingSoonPage title="Skill Gap Analysis" />,
+          },
+          {
+            path: 'recommended',
+            element: <ComingSoonPage title="Recommended" />,
+          },
+          {
             path: 'settings',
             element: <ComingSoonPage title="Settings" />,
           },
@@ -148,6 +160,14 @@ const router = createBrowserRouter([
           {
             path: 'candidates',
             element: <ComingSoonPage title="Candidates" />,
+          },
+          {
+            path: 'applications',
+            element: <ComingSoonPage title="Applications" />,
+          },
+          {
+            path: 'analytics',
+            element: <ComingSoonPage title="Analytics" />,
           },
           {
             path: 'settings',

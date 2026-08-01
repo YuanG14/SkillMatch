@@ -1,21 +1,25 @@
 import { DashboardLayout } from '@/layouts/DashboardLayout'
 import {
-  HomeIcon,
-  BriefcaseIcon,
+  GridIcon,
+  SearchIcon,
+  BookmarkIcon,
   FileTextIcon,
-  SettingsIcon,
   UserIcon,
+  TargetIcon,
+  StarIcon,
 } from '@/components/ui/icons'
 import type { NavItem } from '@/types/navigation'
 
 const studentNavItems: NavItem[] = [
-  { label: 'Dashboard', to: '/student', icon: HomeIcon },
-  { label: 'Profile', to: '/student/profile', icon: UserIcon },
-  { label: 'Internships', to: '/student/internships', icon: BriefcaseIcon },
-  { label: 'Applications', to: '/student/applications', icon: FileTextIcon },
-  { label: 'Settings', to: '/student/settings', icon: SettingsIcon },
+  { label: 'Dashboard', to: '/student', icon: GridIcon },
+  { label: 'Find Internships', to: '/student/internships', icon: SearchIcon },
+  { label: 'Saved Internships', to: '/student/saved', icon: BookmarkIcon },
+  { label: 'My Applications', to: '/student/applications', icon: FileTextIcon },
+  { label: 'My Profile', to: '/student/profile', icon: UserIcon },
+  { label: 'Skill Gap Analysis', to: '/student/skill-gap-analysis', icon: TargetIcon },
+  { label: 'Recommended', to: '/student/recommended', icon: StarIcon },
 ]
 
 export function StudentLayout() {
-  return <DashboardLayout navItems={studentNavItems} roleLabel="Student account" />
+  return <DashboardLayout navItems={studentNavItems} />
 }
