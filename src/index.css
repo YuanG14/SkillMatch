@@ -39,14 +39,14 @@
 }
 
 html {
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
   font-family: var(--font-sans);
   background-color: var(--color-surface-muted);
   color: var(--color-ink-900);
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 @media (prefers-reduced-motion: reduce) {
