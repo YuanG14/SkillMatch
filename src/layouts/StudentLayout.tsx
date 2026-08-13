@@ -16,8 +16,13 @@ const studentNavItems: NavItem[] = [
   { label: 'Saved Internships', to: '/student/saved', icon: BookmarkIcon },
   { label: 'My Applications', to: '/student/applications', icon: FileTextIcon },
   { label: 'My Profile', to: '/student/profile', icon: UserIcon },
-  { label: 'Skill Gap Analysis', to: '/student/skill-gap-analysis', icon: TargetIcon },
-  { label: 'Recommended', to: '/student/recommended', icon: StarIcon },
+  {
+    label: 'Skill Gap Analysis',
+    to: '/student/skill-gap-analysis',
+    icon: TargetIcon,
+    overflow: true,
+  },
+  { label: 'Recommended', to: '/student/recommended', icon: StarIcon, overflow: true },
 ]
 
 export function StudentLayout() {

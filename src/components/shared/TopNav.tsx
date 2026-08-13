@@ -1,7 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { APP_ROUTES } from '@/constants/routes'
-import { BellIcon, ChevronDownIcon, LogOutIcon, MenuIcon, XIcon } from '@/components/ui/icons'
+import {
+  BellIcon,
+  ChevronDownIcon,
+  LogOutIcon,
+  MenuIcon,
+  MoreHorizontalIcon,
+  XIcon,
+} from '@/components/ui/icons'
 import { useAuth } from '@/features/auth/useAuth'
 import { FOCUS_RING } from '@/utils/a11y'
 import { cn } from '@/utils/cn'
@@ -12,11 +19,19 @@ const ON_BRAND_FOCUS_RING =
 
 function BrandMark() {
   return (
-    <Link to={APP_ROUTES.home} className={cn('inline-flex shrink-0 items-center gap-2.5 rounded-md', ON_BRAND_FOCUS_RING)}>
+    <Link
+      to={APP_ROUTES.home}
+      className={cn(
+        'inline-flex shrink-0 items-center gap-2.5 rounded-md',
+        ON_BRAND_FOCUS_RING,
+      )}
+    >
       <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/15 text-lg font-bold text-white">
         S
       </span>
-      <span className="font-display text-lg font-semibold tracking-tight text-white">SkillMatch</span>
+      <span className="font-display text-lg font-semibold tracking-tight text-white">
+        SkillMatch
+      </span>
     </Link>
   )
 }
@@ -31,13 +46,89 @@ function TopNavLink({ item, onNavigate }: { item: NavItem; onNavigate?: () => vo
         cn(
           'flex items-center gap-2 whitespace-nowrap rounded-full px-3.5 py-2 text-sm font-medium transition-colors duration-150',
           ON_BRAND_FOCUS_RING,
-          isActive ? 'bg-white text-primary-700 shadow-sm' : 'text-white/85 hover:bg-white/10 hover:text-white',
+          isActive
+            ? 'bg-white text-primary-700 shadow-sm'
+            : 'text-white/85 hover:bg-white/10 hover:text-white',
         )
       }
     >
       <item.icon className="h-[17px] w-[17px] shrink-0" />
       {item.label}
     </NavLink>
+  )
+}
+
+function MoreNavMenu({ items }: { items: NavItem[] }) {
+  const [isOpen, setIsOpen] = useState(false)
+  const menuRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!isOpen) return
+
+    function handleClickOutside(event: MouseEvent) {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [isOpen])
+
+  return (
+    <div className="relative shrink-0" ref={menuRef}>
+      <button
+        type="button"
+        onClick={() => setIsOpen((open) => !open)}
+        aria-haspopup="menu"
+        aria-expanded={isOpen}
+        className={cn(
+          'flex items-center gap-1.5 whitespace-nowrap rounded-full px-3.5 py-2 text-sm font-medium transition-colors duration-150',
+          ON_BRAND_FOCUS_RING,
+          isOpen
+            ? 'bg-white text-primary-700 shadow-sm'
+            : 'text-white/85 hover:bg-white/10 hover:text-white',
+        )}
+      >
+        <MoreHorizontalIcon className="h-[17px] w-[17px] shrink-0" />
+        More
+        <ChevronDownIcon
+          className={cn(
+            'h-3.5 w-3.5 shrink-0 transition-transform duration-150',
+            isOpen && 'rotate-180',
+          )}
+        />
+      </button>
+
+      {isOpen && (
+        <div
+          role="menu"
+          className="absolute left-0 top-full z-10 mt-2 w-56 origin-top-left rounded-lg border border-border bg-surface py-1 shadow-lg motion-safe:animate-[scale-in_0.15s_ease-out]"
+        >
+          {items.map((item) => (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              end
+              role="menuitem"
+              onClick={() => setIsOpen(false)}
+              className={({ isActive }) =>
+                cn(
+                  'flex items-center gap-2 px-3 py-2 text-sm transition-colors duration-150',
+                  FOCUS_RING,
+                  isActive
+                    ? 'bg-primary-50 text-primary-700'
+                    : 'text-ink-700 hover:bg-surface-muted',
+                )
+              }
+            >
+              <item.icon className="h-4 w-4 shrink-0" />
+              {item.label}
+            </NavLink>
+          ))}
+        </div>
+      )}
+    </div>
   )
 }
 
@@ -56,7 +147,10 @@ export function TopNav({ navItems }: TopNavProps) {
     if (!isAccountMenuOpen) return
 
     function handleClickOutside(event: MouseEvent) {
-      if (accountMenuRef.current && !accountMenuRef.current.contains(event.target as Node)) {
+      if (
+        accountMenuRef.current &&
+        !accountMenuRef.current.contains(event.target as Node)
+      ) {
         setIsAccountMenuOpen(false)
       }
     }
@@ -65,9 +159,20 @@ export function TopNav({ navItems }: TopNavProps) {
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [isAccountMenuOpen])
 
-  const displayName = profile?.fullName ?? profile?.email ?? 'Account'
-  const initial = displayName.charAt(0).toUpperCase()
-  const roleLabel = profile?.role ? profile.role.charAt(0).toUpperCase() + profile.role.slice(1) : ''
+  const roleLabel = profile?.role
+    ? profile.role.charAt(0).toUpperCase() + profile.role.slice(1)
+    : ''
+
+  // Nav pill stays short: the user's name if we have one, otherwise the
+  // role ("Student"/"Company") rather than the raw email -- the account
+  // menu below is where the full email always lives, so it never has to
+  // compete for navbar width.
+  const navDisplayName = profile?.fullName ?? roleLabel ?? 'Account'
+  const initial = navDisplayName.charAt(0).toUpperCase()
+
+  const primaryNavItems = navItems.filter((item) => !item.overflow)
+  const overflowNavItems = navItems.filter((item) => item.overflow)
+  const hasOverflowItems = overflowNavItems.length > 0
 
   async function handleSignOut() {
     setIsAccountMenuOpen(false)
@@ -80,12 +185,30 @@ export function TopNav({ navItems }: TopNavProps) {
       <div className="flex h-[72px] items-center gap-4 px-4 sm:px-6 lg:px-8 xl:px-10">
         <BrandMark />
 
-        {/* Center nav -- persistent from lg upward, matching the desktop-first target breakpoints. */}
-        <nav className="hidden flex-1 items-center justify-center gap-1 lg:flex xl:gap-1.5">
-          {navItems.map((item) => (
-            <TopNavLink key={item.to} item={item} />
-          ))}
-        </nav>
+        {hasOverflowItems ? (
+          <>
+            {/* 1024-1279px: frequently-used items stay inline, the rest collapse into "More". */}
+            <nav className="hidden flex-1 items-center justify-center gap-1 lg:flex xl:hidden">
+              {primaryNavItems.map((item) => (
+                <TopNavLink key={item.to} item={item} />
+              ))}
+              <MoreNavMenu items={overflowNavItems} />
+            </nav>
+
+            {/* 1280px and up: full room for every nav item inline. */}
+            <nav className="hidden flex-1 items-center justify-center gap-1 xl:flex xl:gap-1.5">
+              {navItems.map((item) => (
+                <TopNavLink key={item.to} item={item} />
+              ))}
+            </nav>
+          </>
+        ) : (
+          <nav className="hidden flex-1 items-center justify-center gap-1 lg:flex xl:gap-1.5">
+            {navItems.map((item) => (
+              <TopNavLink key={item.to} item={item} />
+            ))}
+          </nav>
+        )}
 
         <div className="ml-auto flex min-w-0 shrink items-center gap-2 lg:ml-0 lg:shrink-0 xl:gap-3">
           <button
@@ -131,7 +254,7 @@ export function TopNav({ navItems }: TopNavProps) {
                   }}
                   className="text-sm font-semibold text-white"
                 >
-                  {displayName}
+                  {navDisplayName}
                 </span>
                 <span
                   style={{
@@ -147,7 +270,10 @@ export function TopNav({ navItems }: TopNavProps) {
                 </span>
               </div>
               <ChevronDownIcon
-                className={cn('hidden h-4 w-4 shrink-0 text-white/70 transition-transform duration-150 sm:block', isAccountMenuOpen && 'rotate-180')}
+                className={cn(
+                  'hidden h-4 w-4 shrink-0 text-white/70 transition-transform duration-150 sm:block',
+                  isAccountMenuOpen && 'rotate-180',
+                )}
               />
             </button>
 
@@ -186,7 +312,11 @@ export function TopNav({ navItems }: TopNavProps) {
               ON_BRAND_FOCUS_RING,
             )}
           >
-            {isMobileNavOpen ? <XIcon className="h-5 w-5" /> : <MenuIcon className="h-5 w-5" />}
+            {isMobileNavOpen ? (
+              <XIcon className="h-5 w-5" />
+            ) : (
+              <MenuIcon className="h-5 w-5" />
+            )}
           </button>
         </div>
       </div>
@@ -194,7 +324,11 @@ export function TopNav({ navItems }: TopNavProps) {
       {isMobileNavOpen && (
         <nav className="flex flex-col gap-1 border-t border-white/15 px-4 py-3 lg:hidden">
           {navItems.map((item) => (
-            <TopNavLink key={item.to} item={item} onNavigate={() => setIsMobileNavOpen(false)} />
+            <TopNavLink
+              key={item.to}
+              item={item}
+              onNavigate={() => setIsMobileNavOpen(false)}
+            />
           ))}
         </nav>
       )}
