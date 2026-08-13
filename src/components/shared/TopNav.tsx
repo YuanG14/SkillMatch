@@ -117,10 +117,35 @@ export function TopNav({ navItems }: TopNavProps) {
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-sm font-semibold text-primary-700">
                 {initial}
               </span>
-              <span className="hidden min-w-0 max-w-[9rem] flex-col items-start leading-tight sm:flex xl:max-w-[12rem]">
-                <span className="w-full truncate text-sm font-semibold text-white">{displayName}</span>
-                <span className="w-full truncate text-xs text-white/70">{roleLabel}</span>
-              </span>
+              <div
+                className="hidden flex-col items-start justify-center leading-tight sm:flex"
+                style={{ minWidth: 0, maxWidth: '9rem', overflow: 'hidden' }}
+              >
+                <span
+                  style={{
+                    display: 'block',
+                    width: '100%',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap',
+                  }}
+                  className="text-sm font-semibold text-white"
+                >
+                  {displayName}
+                </span>
+                <span
+                  style={{
+                    display: 'block',
+                    width: '100%',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap',
+                  }}
+                  className="text-xs text-white/70"
+                >
+                  {roleLabel}
+                </span>
+              </div>
               <ChevronDownIcon
                 className={cn('hidden h-4 w-4 shrink-0 text-white/70 transition-transform duration-150 sm:block', isAccountMenuOpen && 'rotate-180')}
               />
