@@ -163,11 +163,12 @@ export function TopNav({ navItems }: TopNavProps) {
     ? profile.role.charAt(0).toUpperCase() + profile.role.slice(1)
     : ''
 
-  // Nav pill stays short: the user's name if we have one, otherwise the
-  // role ("Student"/"Company") rather than the raw email -- the account
-  // menu below is where the full email always lives, so it never has to
-  // compete for navbar width.
-  const navDisplayName = profile?.fullName ?? roleLabel ?? 'Account'
+  // Nav pill stays short: just the user's first name if we have one,
+  // otherwise the role ("Student"/"Company") rather than the raw email --
+  // the account menu below is where the full name and email always live,
+  // so the pill never has to compete for navbar width.
+  const firstName = profile?.fullName?.trim().split(/\s+/)[0]
+  const navDisplayName = firstName || roleLabel || 'Account'
   const initial = navDisplayName.charAt(0).toUpperCase()
 
   const primaryNavItems = navItems.filter((item) => !item.overflow)
@@ -282,8 +283,13 @@ export function TopNav({ navItems }: TopNavProps) {
                 role="menu"
                 className="absolute right-0 top-full z-10 mt-2 w-52 origin-top-right rounded-lg border border-border bg-surface py-1 shadow-lg motion-safe:animate-[scale-in_0.15s_ease-out]"
               >
-                <div className="truncate border-b border-border px-3 py-2 text-xs text-ink-400">
-                  {profile?.email}
+                <div className="border-b border-border px-3 py-2 text-xs text-ink-400">
+                  {profile?.fullName && (
+                    <div className="mb-0.5 truncate text-sm font-medium text-ink-900">
+                      {profile.fullName}
+                    </div>
+                  )}
+                  <div className="truncate">{profile?.email}</div>
                 </div>
                 <button
                   type="button"
