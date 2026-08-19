@@ -32,6 +32,7 @@ import { FindInternshipsPage } from '@/pages/student/FindInternshipsPage'
 import { SavedInternshipsPage } from '@/pages/student/SavedInternshipsPage'
 import { ApplicationsPage } from '@/pages/student/ApplicationsPage'
 import { SkillGapAnalysisPage } from '@/pages/student/SkillGapAnalysisPage'
+import { RecommendedPage } from '@/pages/student/RecommendedPage'
 import { CompanyDashboardPage } from '@/pages/company/CompanyDashboardPage'
 import { CompanyProfilePage } from '@/pages/company/CompanyProfilePage'
 import { AdminDashboardPage } from '@/pages/admin/AdminDashboardPage'
@@ -129,7 +130,7 @@ const router = createBrowserRouter([
           },
           {
             path: 'recommended',
-            element: <ComingSoonPage title="Recommended" />,
+            element: <RecommendedPage />,
           },
           {
             path: 'settings',
