@@ -34,6 +34,7 @@ import { ApplicationsPage } from '@/pages/student/ApplicationsPage'
 import { SkillGapAnalysisPage } from '@/pages/student/SkillGapAnalysisPage'
 import { RecommendedPage } from '@/pages/student/RecommendedPage'
 import { CompanyDashboardPage } from '@/pages/company/CompanyDashboardPage'
+import { CandidatesPage } from '@/pages/company/CandidatesPage'
 import { CompanyProfilePage } from '@/pages/company/CompanyProfilePage'
 import { AdminDashboardPage } from '@/pages/admin/AdminDashboardPage'
 
@@ -164,7 +165,7 @@ const router = createBrowserRouter([
           },
           {
             path: 'candidates',
-            element: <ComingSoonPage title="Candidates" />,
+            element: <CandidatesPage />,
           },
           {
             path: 'applications',
