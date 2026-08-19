@@ -28,6 +28,7 @@ import { NotFoundPage } from '@/pages/NotFoundPage'
 
 import { StudentDashboardPage } from '@/pages/student/StudentDashboardPage'
 import { StudentProfilePage } from '@/pages/student/StudentProfilePage'
+import { FindInternshipsPage } from '@/pages/student/FindInternshipsPage'
 import { CompanyDashboardPage } from '@/pages/company/CompanyDashboardPage'
 import { CompanyProfilePage } from '@/pages/company/CompanyProfilePage'
 import { AdminDashboardPage } from '@/pages/admin/AdminDashboardPage'
@@ -109,7 +110,7 @@ const router = createBrowserRouter([
           },
           {
             path: 'internships',
-            element: <ComingSoonPage title="Internships" />,
+            element: <FindInternshipsPage />,
           },
           {
             path: 'applications',
