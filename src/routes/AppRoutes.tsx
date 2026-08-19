@@ -30,6 +30,8 @@ import { StudentDashboardPage } from '@/pages/student/StudentDashboardPage'
 import { StudentProfilePage } from '@/pages/student/StudentProfilePage'
 import { FindInternshipsPage } from '@/pages/student/FindInternshipsPage'
 import { SavedInternshipsPage } from '@/pages/student/SavedInternshipsPage'
+import { ApplicationsPage } from '@/pages/student/ApplicationsPage'
+import { SkillGapAnalysisPage } from '@/pages/student/SkillGapAnalysisPage'
 import { CompanyDashboardPage } from '@/pages/company/CompanyDashboardPage'
 import { CompanyProfilePage } from '@/pages/company/CompanyProfilePage'
 import { AdminDashboardPage } from '@/pages/admin/AdminDashboardPage'
@@ -115,7 +117,7 @@ const router = createBrowserRouter([
           },
           {
             path: 'applications',
-            element: <ComingSoonPage title="Applications" />,
+            element: <ApplicationsPage />,
           },
           {
             path: 'saved',
@@ -123,7 +125,7 @@ const router = createBrowserRouter([
           },
           {
             path: 'skill-gap-analysis',
-            element: <ComingSoonPage title="Skill Gap Analysis" />,
+            element: <SkillGapAnalysisPage />,
           },
           {
             path: 'recommended',
