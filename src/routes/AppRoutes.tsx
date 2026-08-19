@@ -37,6 +37,7 @@ import { CompanyDashboardPage } from '@/pages/company/CompanyDashboardPage'
 import { CandidatesPage } from '@/pages/company/CandidatesPage'
 import { JobListingsPage } from '@/pages/company/JobListingsPage'
 import { CompanyApplicationsPage } from '@/pages/company/CompanyApplicationsPage'
+import { AnalyticsPage } from '@/pages/company/AnalyticsPage'
 import { CompanyProfilePage } from '@/pages/company/CompanyProfilePage'
 import { AdminDashboardPage } from '@/pages/admin/AdminDashboardPage'
 
@@ -175,7 +176,7 @@ const router = createBrowserRouter([
           },
           {
             path: 'analytics',
-            element: <ComingSoonPage title="Analytics" />,
+            element: <AnalyticsPage />,
           },
           {
             path: 'settings',
