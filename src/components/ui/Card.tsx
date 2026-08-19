@@ -1,11 +1,24 @@
 import type { HTMLAttributes } from 'react'
 import { cn } from '@/utils/cn'
 
-export function Card({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
+interface CardProps extends HTMLAttributes<HTMLDivElement> {
+  /**
+   * Marks a card as a whole clickable/actionable unit (e.g. a list row
+   * that leads to a detail view or action) so it gets the shared hover
+   * elevation. Purely informational cards (KPI stats, status callouts)
+   * should leave this off -- their own inner button already has a hover
+   * state, and hovering the whole card would be misleading.
+   */
+  interactive?: boolean
+}
+
+export function Card({ className, interactive = false, ...props }: CardProps) {
   return (
     <div
       className={cn(
         'rounded-xl border border-border bg-surface shadow-[0_1px_2px_rgba(16,24,40,0.04)]',
+        interactive &&
+          'transition-[box-shadow,border-color,transform] duration-200 ease-out hover:-translate-y-0.5 hover:border-border-strong hover:shadow-[0_8px_24px_rgba(16,24,40,0.08)]',
         className,
       )}
       {...props}

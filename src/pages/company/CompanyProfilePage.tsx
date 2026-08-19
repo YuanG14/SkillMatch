@@ -16,6 +16,7 @@ import { Button } from '@/components/ui/Button'
 import { Spinner } from '@/components/ui/Spinner'
 import { ErrorState } from '@/components/ui/ErrorState'
 import { Badge } from '@/components/ui/Badge'
+import { ProfileHeader } from '@/components/dashboard/ProfileHeader'
 import { useCompanyProfile } from '@/features/companyProfile/useCompanyProfile'
 import { companyProfileToFormValues } from '@/types/companyProfile'
 import type { CompanyProfileFormValues, CompanySizeRange } from '@/types/companyProfile'
@@ -60,20 +61,19 @@ export function CompanyProfilePage() {
     VERIFICATION_STATUS_DISPLAY[profile?.verificationStatus ?? 'pending']
 
   return (
-    <div className="mx-auto flex max-w-3xl flex-col gap-6">
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <h1 className="font-display text-2xl font-semibold text-ink-950">
-            Company profile
-          </h1>
-          <p className="text-sm text-ink-600">
-            These details appear on your listings once your company is verified.
-          </p>
-        </div>
-        <Badge tone={statusDisplay.tone} className="shrink-0">
-          {statusDisplay.label}
-        </Badge>
-      </div>
+    <div className="flex flex-col gap-8">
+      <ProfileHeader
+        title="Company profile"
+        description="These details appear on your listings once your company is verified."
+        rightSlot={
+          <div>
+            <p className="text-sm font-semibold text-ink-900">Verification status</p>
+            <Badge tone={statusDisplay.tone} className="mt-1.5">
+              {statusDisplay.label}
+            </Badge>
+          </div>
+        }
+      />
 
       {error && <ErrorState title="Something went wrong" description={error} />}
 
@@ -88,7 +88,7 @@ export function CompanyProfilePage() {
 
       <form
         onSubmit={(event) => void handleSubmit(event)}
-        className="flex flex-col gap-6"
+        className="grid grid-cols-1 gap-6 lg:grid-cols-2"
       >
         <Card>
           <CardHeader>
@@ -215,7 +215,7 @@ export function CompanyProfilePage() {
               >
                 Back to dashboard
               </Button>
-              <Button type="submit" disabled={isSaving}>
+              <Button type="submit" isLoading={isSaving}>
                 {isSaving ? 'Saving…' : 'Save profile'}
               </Button>
             </div>

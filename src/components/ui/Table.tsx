@@ -29,7 +29,9 @@ export function TableBody({
 }
 
 export function TableRow({ className, ...props }: HTMLAttributes<HTMLTableRowElement>) {
-  return <tr className={cn('hover:bg-surface-muted', className)} {...props} />
+  return (
+    <tr className={cn('transition-colors duration-150 hover:bg-surface-muted', className)} {...props} />
+  )
 }
 
 export function TableHeaderCell({
@@ -38,6 +40,7 @@ export function TableHeaderCell({
 }: ThHTMLAttributes<HTMLTableCellElement>) {
   return (
     <th
+      scope="col"
       className={cn(
         'px-4 py-3 text-xs font-semibold uppercase tracking-wide text-ink-600',
         className,

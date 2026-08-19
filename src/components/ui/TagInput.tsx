@@ -39,6 +39,7 @@ export function TagInput({ label, values, onChange, placeholder, hint }: TagInpu
       <div
         className={cn(
           'flex min-h-10 flex-wrap items-center gap-1.5 rounded-md border border-border-strong bg-surface px-2 py-1.5',
+          'transition-[border-color,box-shadow] duration-150',
           'focus-within:ring-2 focus-within:ring-primary-600 focus-within:border-primary-600',
         )}
       >
@@ -52,7 +53,7 @@ export function TagInput({ label, values, onChange, placeholder, hint }: TagInpu
               type="button"
               onClick={() => removeValue(value)}
               aria-label={`Remove ${value}`}
-              className="text-primary-700/70 hover:text-primary-700"
+              className="text-primary-700/70 transition-colors hover:text-primary-700"
             >
               &times;
             </button>

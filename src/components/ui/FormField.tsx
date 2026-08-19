@@ -32,7 +32,7 @@ export function FormField({
         aria-describedby={errorId ?? hintId}
         className={cn(
           'h-10 rounded-md border border-border-strong bg-surface px-3 text-sm text-ink-900',
-          'placeholder:text-ink-400',
+          'placeholder:text-ink-400 transition-[border-color,box-shadow] duration-150',
           'focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-primary-600',
           error && 'border-danger-600 focus:ring-danger-600 focus:border-danger-600',
           className,

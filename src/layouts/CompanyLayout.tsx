@@ -1,21 +1,16 @@
 import { DashboardLayout } from '@/layouts/DashboardLayout'
-import {
-  HomeIcon,
-  BuildingIcon,
-  BriefcaseIcon,
-  UsersIcon,
-  SettingsIcon,
-} from '@/components/ui/icons'
+import { GridIcon, UsersIcon, BriefcaseIcon, FileTextIcon, ChartIcon, BuildingIcon } from '@/components/ui/icons'
 import type { NavItem } from '@/types/navigation'
 
 const companyNavItems: NavItem[] = [
-  { label: 'Dashboard', to: '/company', icon: HomeIcon },
-  { label: 'Company Profile', to: '/company/profile', icon: BuildingIcon },
-  { label: 'Listings', to: '/company/listings', icon: BriefcaseIcon },
+  { label: 'Dashboard', to: '/company', icon: GridIcon },
   { label: 'Candidates', to: '/company/candidates', icon: UsersIcon },
-  { label: 'Settings', to: '/company/settings', icon: SettingsIcon },
+  { label: 'Job Listings', to: '/company/listings', icon: BriefcaseIcon },
+  { label: 'Applications', to: '/company/applications', icon: FileTextIcon },
+  { label: 'Analytics', to: '/company/analytics', icon: ChartIcon },
+  { label: 'Company Profile', to: '/company/profile', icon: BuildingIcon },
 ]
 
 export function CompanyLayout() {
-  return <DashboardLayout navItems={companyNavItems} roleLabel="Company account" />
+  return <DashboardLayout navItems={companyNavItems} />
 }

@@ -10,5 +10,5 @@ const adminNavItems: NavItem[] = [
 ]
 
 export function AdminLayout() {
-  return <DashboardLayout navItems={adminNavItems} roleLabel="Admin account" />
+  return <DashboardLayout navItems={adminNavItems} />
 }

@@ -20,12 +20,24 @@ import {
 } from '@/pages/authPages'
 
 import { LandingPage } from '@/pages/LandingPage'
+import { HowItWorksPage } from '@/pages/HowItWorksPage'
+import { ForStudentsPage } from '@/pages/ForStudentsPage'
+import { ForCompaniesPage } from '@/pages/ForCompaniesPage'
 import { ComingSoonPage } from '@/pages/ComingSoonPage'
 import { NotFoundPage } from '@/pages/NotFoundPage'
 
 import { StudentDashboardPage } from '@/pages/student/StudentDashboardPage'
 import { StudentProfilePage } from '@/pages/student/StudentProfilePage'
+import { FindInternshipsPage } from '@/pages/student/FindInternshipsPage'
+import { SavedInternshipsPage } from '@/pages/student/SavedInternshipsPage'
+import { ApplicationsPage } from '@/pages/student/ApplicationsPage'
+import { SkillGapAnalysisPage } from '@/pages/student/SkillGapAnalysisPage'
+import { RecommendedPage } from '@/pages/student/RecommendedPage'
 import { CompanyDashboardPage } from '@/pages/company/CompanyDashboardPage'
+import { CandidatesPage } from '@/pages/company/CandidatesPage'
+import { JobListingsPage } from '@/pages/company/JobListingsPage'
+import { CompanyApplicationsPage } from '@/pages/company/CompanyApplicationsPage'
+import { AnalyticsPage } from '@/pages/company/AnalyticsPage'
 import { CompanyProfilePage } from '@/pages/company/CompanyProfilePage'
 import { AdminDashboardPage } from '@/pages/admin/AdminDashboardPage'
 
@@ -45,6 +57,18 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <LandingPage />,
+          },
+          {
+            path: APP_ROUTES.howItWorks,
+            element: <HowItWorksPage />,
+          },
+          {
+            path: APP_ROUTES.forStudents,
+            element: <ForStudentsPage />,
+          },
+          {
+            path: APP_ROUTES.forCompanies,
+            element: <ForCompaniesPage />,
           },
           {
             path: APP_ROUTES.login,
@@ -94,11 +118,23 @@ const router = createBrowserRouter([
           },
           {
             path: 'internships',
-            element: <ComingSoonPage title="Internships" />,
+            element: <FindInternshipsPage />,
           },
           {
             path: 'applications',
-            element: <ComingSoonPage title="Applications" />,
+            element: <ApplicationsPage />,
+          },
+          {
+            path: 'saved',
+            element: <SavedInternshipsPage />,
+          },
+          {
+            path: 'skill-gap-analysis',
+            element: <SkillGapAnalysisPage />,
+          },
+          {
+            path: 'recommended',
+            element: <RecommendedPage />,
           },
           {
             path: 'settings',
@@ -128,11 +164,19 @@ const router = createBrowserRouter([
           },
           {
             path: 'listings',
-            element: <ComingSoonPage title="Listings" />,
+            element: <JobListingsPage />,
           },
           {
             path: 'candidates',
-            element: <ComingSoonPage title="Candidates" />,
+            element: <CandidatesPage />,
+          },
+          {
+            path: 'applications',
+            element: <CompanyApplicationsPage />,
+          },
+          {
+            path: 'analytics',
+            element: <AnalyticsPage />,
           },
           {
             path: 'settings',
