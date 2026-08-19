@@ -35,6 +35,7 @@ import { SkillGapAnalysisPage } from '@/pages/student/SkillGapAnalysisPage'
 import { RecommendedPage } from '@/pages/student/RecommendedPage'
 import { CompanyDashboardPage } from '@/pages/company/CompanyDashboardPage'
 import { CandidatesPage } from '@/pages/company/CandidatesPage'
+import { JobListingsPage } from '@/pages/company/JobListingsPage'
 import { CompanyProfilePage } from '@/pages/company/CompanyProfilePage'
 import { AdminDashboardPage } from '@/pages/admin/AdminDashboardPage'
 
@@ -161,7 +162,7 @@ const router = createBrowserRouter([
           },
           {
             path: 'listings',
-            element: <ComingSoonPage title="Listings" />,
+            element: <JobListingsPage />,
           },
           {
             path: 'candidates',
