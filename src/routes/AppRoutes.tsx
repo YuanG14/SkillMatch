@@ -36,6 +36,7 @@ import { RecommendedPage } from '@/pages/student/RecommendedPage'
 import { CompanyDashboardPage } from '@/pages/company/CompanyDashboardPage'
 import { CandidatesPage } from '@/pages/company/CandidatesPage'
 import { JobListingsPage } from '@/pages/company/JobListingsPage'
+import { CompanyApplicationsPage } from '@/pages/company/CompanyApplicationsPage'
 import { CompanyProfilePage } from '@/pages/company/CompanyProfilePage'
 import { AdminDashboardPage } from '@/pages/admin/AdminDashboardPage'
 
@@ -170,7 +171,7 @@ const router = createBrowserRouter([
           },
           {
             path: 'applications',
-            element: <ComingSoonPage title="Applications" />,
+            element: <CompanyApplicationsPage />,
           },
           {
             path: 'analytics',
